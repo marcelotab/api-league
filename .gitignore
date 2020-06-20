@@ -1,0 +1,13 @@
+/node_modules
+/.env
+.idea/
+*.log
+logs/
+.DS_Store
+*.map
+.env.prod
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
