@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    container_name: app-league
+    environment:
+      MONGO_URL: "mongodb://db:27017/test"
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src
+      - /usr/src/node_modules
+    command: npm run start
+
+  db:
+    container_name: db-league
+    image: mongo
+    volumes:     
+      - db-data:/data/db
+
+volumes:
+  db-data:
