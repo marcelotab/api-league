@@ -12,6 +12,9 @@ class App {
         this.app.get('/', function (_req, res) {
             res.send('Hello World!');
         });
+        this.app.get('/user',function (_req, res) {
+            res.send('Hello World!');
+        });
     }
 }
 
