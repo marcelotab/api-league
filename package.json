@@ -2,11 +2,11 @@
   "name": "api-league",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
-    "start": "ts-node index.ts"
+    "start": "ts-node src/server.ts"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@types/express": "^4.17.7",
-    "@types/node": "^14.0.13",
+    "@types/node": "^14.0.27",
     "bcrypt": "^5.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
