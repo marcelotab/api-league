@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from "typeorm";
+import Role from "./Role";
 
 @Entity('users')
 class User {
@@ -18,6 +19,8 @@ class User {
     @Column()
     private _password: string;
 
+    @ManyToMany(_type => Role)
+    @JoinTable() private _roles: Role[];
 
     public constructor(name: string, surname: string, email: string, password: string) {
         this._name = name;
@@ -61,6 +64,15 @@ class User {
 
     public set password(value: string) {
         this._password = value;
+    }
+
+
+    get roles(): Role[] {
+        return this._roles;
+    }
+
+    set roles(value: Role[]) {
+        this._roles = value;
     }
 }
 

@@ -10,7 +10,8 @@ class Team {
     @Column()
     private _name: string;
 
-    @OneToMany(_type => Player, player => player.team) private _players: Player[];
+    @OneToMany(_type => Player, player => player.team)
+    private _players: Player[];
 
     public constructor(name: string) {
         this._name = name;

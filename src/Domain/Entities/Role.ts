@@ -9,7 +9,6 @@ class Role {
     @Column()
     private _name: string;
 
-
     public constructor(name: string) {
         this._name = name;
     }

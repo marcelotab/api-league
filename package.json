@@ -2,11 +2,11 @@
   "name": "api-league",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
-    "start": "ts-node index.ts"
+    "start": "ts-node src/index.ts"
   },
   "author": "",
   "license": "ISC",
