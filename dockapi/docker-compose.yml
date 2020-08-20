@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-   mysql:
+  mysql:
     image: mysql:8
     hostname: mysql
     command: --default-authentication-plugin=mysql_native_password
@@ -15,15 +15,22 @@ services:
       MYSQL_USER: test
       MYSQL_PASSWORD: test
       USER: 1000
-   
-   node:
-      image: node:14.4.0
-      hostname: league-api
-      ports:
-        - "3000:3000"
-        - "1235:1235"
-      volumes:
-        - ../:/var/www
-      working_dir: /var/www
-      command: yarn start
+
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  node:
+    image: node:14.4.0
+    hostname: league-api
+    ports:
+      - "3000:3000"
+      - "1235:1235"
+    volumes:
+      - ../:/var/www
+    working_dir: /var/www
+    command: yarn start
    
