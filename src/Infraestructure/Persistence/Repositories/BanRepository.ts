@@ -1,12 +1,12 @@
-import {IUserRepository} from "../../../../Domain/Interfaces/Repositories/IUserRepository";
 import TypeRepository from './TypeRepository';
+import {IBanRepository} from "../../../Domain/Contracts/Repositories/IBanRepository";
 import Ban from "../../../Domain/Entities/Ban";
 
-class PlayerRepository extends TypeRepository implements IBanRepository {
+class BanRepository extends TypeRepository implements IBanRepository {
     public async save(ban: Ban): Promise<Ban> {
         return await this.repository(Ban).persist(ban);
     }
 
 }
 
-export default PlayerRepository;
+export default BanRepository;

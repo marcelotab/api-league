@@ -1,5 +1,5 @@
-import {IUserRepository} from "../../../../Domain/Interfaces/Repositories/IUserRepository";
 import TypeRepository from './TypeRepository';
+import {ITeamRepository} from "../../../Domain/Contracts/Repositories/ITeamRepository";
 import Team from "../../../Domain/Entities/Team";
 
 class TeamRepository extends TypeRepository implements ITeamRepository {
