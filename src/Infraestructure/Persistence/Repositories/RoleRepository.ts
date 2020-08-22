@@ -1,5 +1,5 @@
-import {IUserRepository} from "../../../../Domain/Interfaces/Repositories/IUserRepository";
 import TypeRepository from './TypeRepository';
+import {IRoleRepository} from "../../../Domain/Contracts/Repositories/IRoleRepository";
 import Role from "../../../Domain/Entities/Role";
 
 class RoleRepository extends TypeRepository implements IRoleRepository {

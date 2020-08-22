@@ -1,5 +1,5 @@
-import {IUserRepository} from "../../../../Domain/Interfaces/Repositories/IUserRepository";
 import TypeRepository from './TypeRepository';
+import {IPlayerRepository} from "../../../Domain/Contracts/Repositories/IPlayerRepository";
 import Player from "../../../Domain/Entities/Player";
 
 class PlayerRepository extends TypeRepository implements IPlayerRepository {

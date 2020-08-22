@@ -1,5 +1,5 @@
-import {IUserRepository} from "../../../../Domain/Interfaces/Repositories/IUserRepository";
 import User from '../../../Domain/Entities/User';
+import {IUserRepository} from "../../../Domain/Contracts/Repositories/IUserRepository";
 import TypeRepository from './TypeRepository';
 
 class UserRepository extends TypeRepository implements IUserRepository {
