@@ -4,7 +4,7 @@ import Ban from "../../../Domain/Entities/Ban";
 
 class BanRepository extends TypeRepository implements IBanRepository {
     public async save(ban: Ban): Promise<Ban> {
-        return await this.repository(Ban).persist(ban);
+        return await this.repository(Ban).save(ban);
     }
 
 }

@@ -1,8 +1,10 @@
 import * as dotenv from "dotenv";
+import bodyParser from 'body-parser';
 import DatabaseConnection from "./Infraestructure/Persistence/DatabaseConnection";
 import "reflect-metadata";
-import ApiRoutes from "./Presentation/Http/Routes";
 import {Application} from "express";
+import DIcontainer from "./Infraestructure/DI/inversify.config";
+import ApiRoutes from "./Presentation/Http/Routes";
 
 class App {
     private app: Application;
@@ -22,10 +24,15 @@ class App {
             throw new Error(`Environment variables not configured, aborting`);
         }
 
-        this.apiRoutes = new ApiRoutes();
+        this.apiRoutes = DIcontainer.resolve<ApiRoutes>(ApiRoutes);
 
         await this.setDatabaseConnection();
+        this.setMiddelwares();
         this.setRoutes();
+    }
+
+    private setMiddelwares():void{
+        this.app.use(bodyParser.json())
     }
 
     private setRoutes(): void {
