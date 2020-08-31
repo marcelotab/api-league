@@ -18,10 +18,11 @@ class App {
         /**
          * Load environment variables from .env file, where API keys and passwords are configured.
          */
-        const result = dotenv.config();
-
-        if (result.error) {
-            throw new Error(`Environment variables not configured, aborting`);
+        if (process.env.NODE_ENV !== 'production') {
+            let result = dotenv.config();
+            if (result.error) {
+                throw new Error(`Environment variables not configured, aborting`);
+            }
         }
 
         this.apiRoutes = DIcontainer.resolve<ApiRoutes>(ApiRoutes);
