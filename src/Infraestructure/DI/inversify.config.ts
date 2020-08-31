@@ -16,6 +16,8 @@ import UserRoutes from "../../Presentation/Http/Routes/user";
 import CreateTeamAction from "../../Presentation/Http/Actions/Team/CreateTeamAction";
 import CreateTeamHandler from "../../Aplication/Handlers/Team/CreateTeamHandler";
 import CreateTeamAdapter from "../../Presentation/Http/Adapters/Team/CreateTeamAdapter";
+import IndexTeamAction from "../../Presentation/Http/Actions/Team/IndexTeamAction";
+import IndexTeamHandler from "../../Aplication/Handlers/Team/IndexTeamHandler";
 
 const DIcontainer = new Container();
 
@@ -40,10 +42,12 @@ DIcontainer.bind<IHashService>(Types.IHashService).to(HashService);
 //actions
 DIcontainer.bind<CreateUserAction>(CreateUserAction).toSelf();
 DIcontainer.bind<CreateTeamAction>(CreateTeamAction).toSelf();
+DIcontainer.bind<IndexTeamAction>(IndexTeamAction).toSelf();
 
 //handlers
 DIcontainer.bind<CreateUserHandler>(CreateUserHandler).toSelf();
 DIcontainer.bind<CreateTeamHandler>(CreateTeamHandler).toSelf();
+DIcontainer.bind<IndexTeamHandler>(IndexTeamHandler).toSelf();
 
 
 export default DIcontainer;

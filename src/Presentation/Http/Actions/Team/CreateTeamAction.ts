@@ -21,7 +21,7 @@ class CreateTeamAction {
 
         const command = this.createTeamAdapter.adapt(request.body);
 
-        const result = this.createTeamHandler.handle(command);
+        const result = await this.createTeamHandler.handle(command);
 
         return response.status(200).json(result);
     }

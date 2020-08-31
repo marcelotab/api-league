@@ -21,7 +21,7 @@ class CreateUserAction {
 
         const command = this.createUserAdapter.adapt(request.body);
 
-        const result = this.createUserHandler.handle(command);
+        const result = await this.createUserHandler.handle(command);
 
         return response.status(200).json(result);
     }
