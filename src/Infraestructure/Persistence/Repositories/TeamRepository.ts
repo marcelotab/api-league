@@ -11,6 +11,10 @@ class TeamRepository extends TypeRepository implements ITeamRepository {
         return await this.repository(Team).find();
     }
 
+    public async find(option: any): Promise<Team[]> {
+        return await this.repository(Team).find(option);
+    }
+
 }
 
 export default TeamRepository;
