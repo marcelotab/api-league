@@ -7,76 +7,76 @@ import Ban from "./Ban";
 class Player {
 
     @PrimaryGeneratedColumn()
-    private _id: number;
+    public id: number;
 
     @Column()
-    private _name: string;
+    public name: string;
 
     @Column()
-    private _surname: string;
+    public surname: string;
 
     @Column({
         type: "enum",
         enum: StatusPlayer,
         default: StatusPlayer.UNBANNED
     })
-    private _status: StatusPlayer;
+    public status: StatusPlayer;
 
     @ManyToOne(_type => Team, team => team.players)
-    @JoinColumn({ name: "team_id" })
-    private _team: Team;
+    @JoinColumn({ name: "teamid" })
+    public team: Team;
 
     @OneToMany(_type => Ban, ban => ban.player)
-    private _bans: Ban[];
+    public bans: Ban[];
 
     public constructor(name: string, surname: string, status: StatusPlayer) {
-        this._name = name;
-        this._surname = surname;
-        this._status = status;
+        this.name = name;
+        this.surname = surname;
+        this.status = status;
     }
 
-    public get id(): number {
-        return this._id;
+    public getId(): number {
+        return this.id;
     }
 
-    public get name(): string {
-        return this._name;
+    public getName(): string {
+        return this.name;
     }
 
-    public set name(value: string) {
-        this._name = value;
+    public setName(value: string) {
+        this.name = value;
     }
 
-    public get surname(): string {
-        return this._surname;
+    public getSurname(): string {
+        return this.surname;
     }
 
-    public set surname(value: string) {
-        this._surname = value;
+    public setSurname(value: string) {
+        this.surname = value;
     }
 
-    public get status(): StatusPlayer {
-        return this._status;
+    public getStatus(): StatusPlayer {
+        return this.status;
     }
 
-    public set status(value: StatusPlayer) {
-        this._status = value;
+    public setStatus(value: StatusPlayer) {
+        this.status = value;
     }
 
-    public get team(): Team {
-        return this._team;
+    public getTeam(): Team {
+        return this.team;
     }
 
-    public set team(value: Team) {
-        this._team = value;
+    public setTeam(value: Team) {
+        this.team = value;
     }
 
-    public get bans(): Ban[] {
-        return this._bans;
+    public getBans(): Ban[] {
+        return this.bans;
     }
 
-    public set bans(value: Ban[]) {
-        this._bans = value;
+    public setBans(value: Ban[]) {
+        this.bans = value;
     }
 }
 
