@@ -1,4 +1,3 @@
-// import IndexTeamCommand from "../../Commands/Team/IndexTeamCommand";
 import {IPlayerRepository} from "../../../Domain/Contracts/Repositories/IPlayerRepository";
 import {inject, injectable} from "inversify";
 import {Types} from "../../../Infraestructure/DI/types";

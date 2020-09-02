@@ -1,9 +1,6 @@
 import {createConnection} from 'typeorm';
-import User from "../../Domain/Entities/User";
-import Team from "../../Domain/Entities/Team";
-import Player from "../../Domain/Entities/Player";
-import Ban from "../../Domain/Entities/Ban";
-import Role from "../../Domain/Entities/Role";
+import path from 'path';
+const entitiesPath = path.resolve(__dirname, '../../Domain/Entities/*');
 
 export default class DatabaseConnection {
 
@@ -24,7 +21,7 @@ export default class DatabaseConnection {
             database: db_database,
             synchronize: true,
             logging: true,
-            entities: [User, Team, Player, Ban,Role],
+            entities: [entitiesPath],
         }).catch(err => console.log('error connection to db: ' + err));
     }
 }
