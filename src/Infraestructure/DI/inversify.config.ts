@@ -1,3 +1,5 @@
+import CreatePlayerHandler from '../../Aplication/Handlers/Player/CreatePlayerHandler';
+import { IPlayerRepository } from './../../Domain/Contracts/Repositories/IPlayerRepository';
 import {Container} from "inversify";
 import ApiRoutes from "../../Presentation/Http/Routes";
 import CreateUserAdapter from "../../Presentation/Http/Adapters/User/CreateUserAdapter";
@@ -18,6 +20,12 @@ import CreateTeamHandler from "../../Aplication/Handlers/Team/CreateTeamHandler"
 import CreateTeamAdapter from "../../Presentation/Http/Adapters/Team/CreateTeamAdapter";
 import IndexTeamAction from "../../Presentation/Http/Actions/Team/IndexTeamAction";
 import IndexTeamHandler from "../../Aplication/Handlers/Team/IndexTeamHandler";
+import PlayerRoutes from '../../Presentation/Http/Routes/player';
+import PlayerRepository from "../Persistence/Repositories/PlayerRepository";
+import CreatePlayerAdapter from "../../Presentation/Http/Adapters/Player/CreatePlayerAdapter";
+import CreatePlayerAction from '../../Presentation/Http/Actions/Player/CreatePlayerAction';
+import IndexPlayerHandler from '../../Aplication/Handlers/Player/IndexPlayerHandler';
+import IndexPlayerAction from '../../Presentation/Http/Actions/Player/IndexPlayerAction';
 
 const DIcontainer = new Container();
 
@@ -25,14 +33,17 @@ const DIcontainer = new Container();
 DIcontainer.bind<ApiRoutes>(ApiRoutes).toSelf();
 DIcontainer.bind<UserRoutes>(UserRoutes).toSelf();
 DIcontainer.bind<TeamRoutes>(TeamRoutes).toSelf();
+DIcontainer.bind<PlayerRoutes>(PlayerRoutes).toSelf();
 
 //repositories
 DIcontainer.bind<IUserRepository>(Types.IUserRepository).to(UserRepository);
 DIcontainer.bind<ITeamRepository>(Types.ITeamRepository).to(TeamRepository);
+DIcontainer.bind<IPlayerRepository>(Types.IPlayerRepository).to(PlayerRepository);
 
 //adapters
 DIcontainer.bind<CreateUserAdapter>(CreateUserAdapter).toSelf();
 DIcontainer.bind<CreateTeamAdapter>(CreateTeamAdapter).toSelf();
+DIcontainer.bind<CreatePlayerAdapter>(CreatePlayerAdapter).toSelf();
 
 DIcontainer.bind<Validator>(Validator).toSelf();
 
@@ -43,11 +54,15 @@ DIcontainer.bind<IHashService>(Types.IHashService).to(HashService);
 DIcontainer.bind<CreateUserAction>(CreateUserAction).toSelf();
 DIcontainer.bind<CreateTeamAction>(CreateTeamAction).toSelf();
 DIcontainer.bind<IndexTeamAction>(IndexTeamAction).toSelf();
+DIcontainer.bind<CreatePlayerAction>(CreatePlayerAction).toSelf();
+DIcontainer.bind<IndexPlayerAction>(IndexPlayerAction).toSelf();
 
 //handlers
 DIcontainer.bind<CreateUserHandler>(CreateUserHandler).toSelf();
 DIcontainer.bind<CreateTeamHandler>(CreateTeamHandler).toSelf();
 DIcontainer.bind<IndexTeamHandler>(IndexTeamHandler).toSelf();
+DIcontainer.bind<CreatePlayerHandler>(CreatePlayerHandler).toSelf();
+DIcontainer.bind<IndexPlayerHandler>(IndexPlayerHandler).toSelf();
 
 
 export default DIcontainer;
