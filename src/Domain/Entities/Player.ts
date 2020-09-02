@@ -1,4 +1,4 @@
-import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinColumn} from "typeorm";
 import {StatusPlayer} from "../Enums/StatusPlayer";
 import Team from "./Team";
 import Ban from "./Ban";
@@ -23,6 +23,7 @@ class Player {
     private _status: StatusPlayer;
 
     @ManyToOne(_type => Team, team => team.players)
+    @JoinColumn({ name: "team_id" })
     private _team: Team;
 
     @OneToMany(_type => Ban, ban => ban.player)
