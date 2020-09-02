@@ -1,10 +1,5 @@
 import {createConnection} from 'typeorm';
 import path from 'path';
-/*import User from "../../Domain/Entities/User";
-import Team from "../../Domain/Entities/Team";
-import Player from "../../Domain/Entities/Player";
-import Ban from "../../Domain/Entities/Ban";
-import Role from "../../Domain/Entities/Role";*/
 const entitiesPath = path.resolve(__dirname, '../../Domain/Entities/*');
 
 export default class DatabaseConnection {
