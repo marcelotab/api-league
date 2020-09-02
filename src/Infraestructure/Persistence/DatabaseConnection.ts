@@ -12,13 +12,13 @@ export default class DatabaseConnection {
         const db_username = process.env.DB_USER;
         const db_password = process.env.DB_PASSWORD;
         const db_database = process.env.DB_NAME;
-        // const db_port = process.env.DB_PORT;
+        const db_port = process.env.DB_PORT;
         const db_host = process.env.DB_HOST;
 
         await createConnection({
             type: 'mysql',
             host: db_host,
-            // port: Number(db_port),
+            port: Number(db_port),
             username: db_username,
             password: db_password,
             database: db_database,

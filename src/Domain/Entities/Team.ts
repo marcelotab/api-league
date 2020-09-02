@@ -5,36 +5,36 @@ import Player from "./Player";
 class Team {
 
     @PrimaryGeneratedColumn()
-    private _id: number;
+    public id: number;
 
     @Column()
-    private _name: string;
+    public name: string;
 
     @OneToMany(_type => Player, player => player.team)
-    private _players: Player[];
+    public players: Player[];
 
     public constructor(name: string) {
-        this._name = name;
+        this.name = name;
     }
 
-    public get id(): number {
-        return this._id;
+    public getId(): number {
+        return this.id;
     }
 
-    public get name(): string {
-        return this._name;
+    public getName(): string {
+        return this.name;
     }
 
-    public set name(value: string) {
-        this._name = value;
+    public setName(value: string) {
+        this.name = value;
     }
 
-   public get players(): Player[] {
-        return this._players;
+   public getPlayers(): Player[] {
+        return this.players;
     }
 
-    public set players(value: Player[]) {
-        this._players = value;
+    public setPlayers(value: Player[]) {
+        this.players = value;
     }
 }
 

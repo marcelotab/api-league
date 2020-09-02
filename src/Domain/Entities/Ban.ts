@@ -5,49 +5,49 @@ import Player from "./Player";
 class Ban {
 
     @PrimaryGeneratedColumn()
-    private _id: number;
+    public id: number;
 
     @Column()
-    private _dateFrom: Date;
+    public dateFrom: Date;
 
     @Column()
-    private _dateTo: Date;
+    public dateTo: Date;
 
     @ManyToOne(_type => Player, player => player.bans)
-    private _player: Player;
+    public player: Player;
 
     public constructor(dateFrom: Date, dateTo: Date, player: Player) {
-        this._dateFrom = dateFrom;
-        this._dateTo = dateTo;
-        this._player = player;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.player = player;
     }
 
-    public get id(): number {
-        return this._id;
+    public getId(): number {
+        return this.id;
     }
 
-    public get dateFrom(): Date {
-        return this._dateFrom;
+    public getDateFrom(): Date {
+        return this.dateFrom;
     }
 
-    public set dateFrom(value: Date) {
-        this._dateFrom = value;
+    public setDateFrom(value: Date) {
+        this.dateFrom = value;
     }
 
-    public get dateTo(): Date {
-        return this._dateTo;
+    public getDateTo(): Date {
+        return this.dateTo;
     }
 
-    public set dateTo(value: Date) {
-        this._dateTo = value;
+    public setDateTo(value: Date) {
+        this.dateTo = value;
     }
 
-    public get player(): Player {
-        return this._player;
+    public getPlayer(): Player {
+        return this.player;
     }
 
-    public set player(value: Player) {
-        this._player = value;
+    public setPlayer(value: Player) {
+        this.player = value;
     }
 }
 

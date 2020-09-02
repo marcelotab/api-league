@@ -4,26 +4,26 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 class Role {
 
     @PrimaryGeneratedColumn()
-    private _id: number;
+    public id: number;
 
     @Column()
-    private _name: string;
+    public name: string;
 
     public constructor(name: string) {
-        this._name = name;
+        this.name = name;
     }
 
 
-    public get id(): number {
-        return this._id;
+    public getId(): number {
+        return this.id;
     }
 
-    public get name(): string {
-        return this._name;
+    public getName(): string {
+        return this.name;
     }
 
-    public set name(value: string) {
-        this._name = value;
+    public setName(value: string) {
+        this.name = value;
     }
 }
 

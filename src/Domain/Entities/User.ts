@@ -5,74 +5,74 @@ import Role from "./Role";
 class User {
 
     @PrimaryGeneratedColumn()
-    private _id: number;
+    public id: number;
 
     @Column()
-    private _name: string;
+    public name: string;
 
     @Column()
-    private _surname: string;
+    public surname: string;
 
     @Column({unique: true})
-    private _email: string;
+    public email: string;
 
     @Column()
-    private _password: string;
+    public password: string;
 
     @ManyToMany(_type => Role)
-    @JoinTable() private _roles: Role[];
+    @JoinTable() public roles: Role[];
 
     public constructor(name: string, surname: string, email: string, password: string) {
-        this._name = name;
-        this._surname = surname;
-        this._email = email;
-        this._password = password;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
     }
 
 
-    public get id(): number {
-        return this._id;
+    public getId(): number {
+        return this.id;
     }
 
-    public get name(): string {
-        return this._name;
+    public getName(): string {
+        return this.name;
     }
 
-    public set name(value: string) {
-        this._name = value;
+    public setName(value: string) {
+        this.name = value;
     }
 
-    public get surname(): string {
-        return this._surname;
+    public getSurname(): string {
+        return this.surname;
     }
 
-    public set surname(value: string) {
-        this._surname = value;
+    public setSurname(value: string) {
+        this.surname = value;
     }
 
-    public get email(): string {
-        return this._email;
+    public getEmail(): string {
+        return this.email;
     }
 
-    public set email(value: string) {
-        this._email = value;
+    public setEmail(value: string) {
+        this.email = value;
     }
 
-    public get password(): string {
-        return this._password;
+    public getPassword(): string {
+        return this.password;
     }
 
-    public set password(value: string) {
-        this._password = value;
+    public setPassword(value: string) {
+        this.password = value;
     }
 
 
-    get roles(): Role[] {
-        return this._roles;
+    getRoles(): Role[] {
+        return this.roles;
     }
 
-    set roles(value: Role[]) {
-        this._roles = value;
+    setRoles(value: Role[]) {
+        this.roles = value;
     }
 }
 
