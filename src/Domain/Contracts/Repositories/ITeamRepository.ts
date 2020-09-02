@@ -4,4 +4,5 @@ export interface ITeamRepository {
 
     save(team): Promise<Team>
     findAll(): Promise<Team[]>
+    find(option): Promise<Team[]>
 }

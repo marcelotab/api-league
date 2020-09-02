@@ -3,6 +3,7 @@ import {IPlayerRepository} from "../../../Domain/Contracts/Repositories/IPlayerR
 import {inject, injectable} from "inversify";
 import {Types} from "../../../Infraestructure/DI/types";
 import Player from "../../../Domain/Entities/Player";
+import Team from '../../../Domain/Entities/Team';
 
 
 @injectable()
@@ -22,6 +23,11 @@ class CreatePlayerHandler {
             command.getSurname(), 
             command.getStatus()
             );
+
+        if(!!command.getTeamId()){
+            player.team = <Team>{id: command.getTeamId()}
+        }
+        
         await this.PlayerRepository.save(player);
         return player;
     }

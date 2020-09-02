@@ -23,7 +23,6 @@ class Player {
     public status: StatusPlayer;
 
     @ManyToOne(_type => Team, team => team.players)
-    @JoinColumn({ name: "teamid" })
     public team: Team;
 
     @OneToMany(_type => Ban, ban => ban.player)

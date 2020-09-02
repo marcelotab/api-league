@@ -17,7 +17,7 @@ class IndexTeamHandler {
 
     public async handle() {
         //To do: findByPaginated
-        return await this.TeamRepository.findAll();
+        return await this.TeamRepository.find({relations:["players"]});
     }
 
 }

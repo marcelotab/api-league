@@ -22,8 +22,8 @@ class CreateTeamAdapter {
             console.log(errors);
         }
 
-        const {name, surname, status} = data
-        return new CreatePlayerCommand(name, surname, status);
+        const {name, surname, status, team_id } = data
+        return new CreatePlayerCommand(name, surname, status, team_id === undefined? null : team_id);
     }
 
     private getValidationRules = () => PlayerSchema;
