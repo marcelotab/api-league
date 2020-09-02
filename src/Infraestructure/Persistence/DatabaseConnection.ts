@@ -1,6 +1,6 @@
 import {createConnection} from 'typeorm';
 import path from 'path';
-const entitiesPath = path.resolve(__dirname, '../../Domain/Entities/*');
+const entitiesPath = path.join(__dirname, '../../Domain/Entities/*.ts');
 
 export default class DatabaseConnection {
 
