@@ -23,8 +23,8 @@ class CreatePlayerHandler {
             command.getSurname(), 
             command.getStatus()
             );
-
-        if(!!command.getTeamId()){
+        
+        if(command.getTeamId()){
             player.team = <Team>{id: command.getTeamId()}
         }
         

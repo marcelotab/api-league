@@ -1,13 +1,15 @@
-import * as express from 'express';
+import { PlayerSchema } from './../Validations/Schemas/PlayerSchema';
+import { Router, Request, Response } from 'express';
 import {inject, injectable} from "inversify";
 import {asyncMiddleware} from "../Middelwares/AsyncMiddleware";
+import {validationMiddleware} from "../Middelwares/ValidationMiddleware";
 import CreatePlayerAction from "../Actions/Player/CreatePlayerAction";
 import IndexPlayerAction from "../Actions/Player/IndexPlayerAction"
 
 @injectable()
 class PlayerRoutes {
 
-    private router: express.Router;
+    private router: Router;
     private createPlayerAction: CreatePlayerAction;
     private indexPlayerAction: IndexPlayerAction;
 
@@ -15,7 +17,7 @@ class PlayerRoutes {
         @inject(CreatePlayerAction) createPlayerAction: CreatePlayerAction,
         @inject(IndexPlayerAction) indexPlayerAction: IndexPlayerAction
     ) {
-        this.router = express.Router();
+        this.router = Router();
         this.createPlayerAction = createPlayerAction;
         this.indexPlayerAction = indexPlayerAction;
         this.setRoutes();
@@ -23,14 +25,16 @@ class PlayerRoutes {
 
     private setRoutes(): void {
 
-        this.router.post(
-            '/', asyncMiddleware(async (request: express.Request, response: express.Response) => {
-                await this.createPlayerAction.execute(request, response);
+        this.router.post('/',
+            validationMiddleware(PlayerSchema),
+            asyncMiddleware((request: Request, response: Response) => {
+                this.createPlayerAction.execute(request, response);
             }),
         );
-        this.router.get(
-            '/', asyncMiddleware(async (request: express.Request, response: express.Response) => {
-                await this.indexPlayerAction.execute(request, response);
+        
+        this.router.get('/',
+            asyncMiddleware((request: Request, response: Response) => {
+                this.indexPlayerAction.execute(request, response);
             }),
         );
     }
