@@ -3,7 +3,6 @@ import { IPlayerRepository } from './../../Domain/Contracts/Repositories/IPlayer
 import {Container} from "inversify";
 import ApiRoutes from "../../Presentation/Http/Routes";
 import CreateUserAdapter from "../../Presentation/Http/Adapters/User/CreateUserAdapter";
-import Validator from "../../Presentation/Http/Validations/Validator";
 import {IUserRepository} from "../../Domain/Contracts/Repositories/IUserRepository";
 import UserRepository from "../Persistence/Repositories/UserRepositiry";
 import { Types } from './types';
@@ -44,8 +43,6 @@ DIcontainer.bind<IPlayerRepository>(Types.IPlayerRepository).to(PlayerRepository
 DIcontainer.bind<CreateUserAdapter>(CreateUserAdapter).toSelf();
 DIcontainer.bind<CreateTeamAdapter>(CreateTeamAdapter).toSelf();
 DIcontainer.bind<CreatePlayerAdapter>(CreatePlayerAdapter).toSelf();
-
-DIcontainer.bind<Validator>(Validator).toSelf();
 
 //services
 DIcontainer.bind<IHashService>(Types.IHashService).to(HashService);

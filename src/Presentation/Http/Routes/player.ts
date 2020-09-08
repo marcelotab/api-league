@@ -1,4 +1,4 @@
-import { PlayerSchema } from './../Validations/Schemas/PlayerSchema';
+import { CreatePlayerSchema } from '../Validations/Schemas/Player/CreatePlayerSchema';
 import { Router, Request, Response } from 'express';
 import {inject, injectable} from "inversify";
 import {asyncMiddleware} from "../Middelwares/AsyncMiddleware";
@@ -26,7 +26,7 @@ class PlayerRoutes {
     private setRoutes(): void {
 
         this.router.post('/',
-            validationMiddleware(PlayerSchema),
+            validationMiddleware(CreatePlayerSchema),
             asyncMiddleware((request: Request, response: Response) => {
                 this.createPlayerAction.execute(request, response);
             }),

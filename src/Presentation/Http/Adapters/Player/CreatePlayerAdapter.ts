@@ -2,7 +2,7 @@ import CreatePlayerCommand from "../../../../Aplication/Commands/Player/CreatePl
 import {injectable} from "inversify";
 
 @injectable()
-class CreateTeamAdapter {
+class CreatePlayerAdapter {
 
     public adapt(data: any): CreatePlayerCommand {
 
@@ -13,4 +13,4 @@ class CreateTeamAdapter {
 
 }
 
-export default CreateTeamAdapter;
+export default CreatePlayerAdapter;

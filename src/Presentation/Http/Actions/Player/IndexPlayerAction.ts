@@ -14,7 +14,8 @@ class IndexPlayerAction {
     }
 
     public async execute(request: Request, response: Response): Promise<Response> {
-        console.log(request)
+        
+        console.log(request.body)
         const result = await this.IndexPlayerHandler.handle();
 
         return response.status(200).json(result);
