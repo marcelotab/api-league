@@ -2,6 +2,8 @@ import * as express from 'express';
 import {asyncMiddleware} from "../Middelwares/AsyncMiddleware";
 import CreateUserAction from "../Actions/User/CreateUserAction";
 import {inject, injectable} from "inversify";
+import { CreateUserSchema } from './../Validations/Schemas/User/CreateUserSchema';
+import {validationMiddleware} from "../Middelwares/ValidationMiddleware";
 
 @injectable()
 class UserRoutes {
@@ -19,8 +21,9 @@ class UserRoutes {
 
     private setRoutes(): void {
 
-        this.router.post(
-            '/', asyncMiddleware(async (request: express.Request, response: express.Response) => {
+        this.router.post('/',
+            validationMiddleware(CreateUserSchema),
+            asyncMiddleware(async (request: express.Request, response: express.Response) => {
                 await this.createUserAction.execute(request, response);
             }),
         );
