@@ -6,7 +6,7 @@ class CreatePlayerAdapter {
 
     public adapt(data: any): CreatePlayerCommand {
 
-        const {name, surname, status, team_id } = data
+        const {name, surname, status, team_id } = data;
         
         return new CreatePlayerCommand(name, surname, status, team_id);
     }

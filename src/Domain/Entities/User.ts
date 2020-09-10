@@ -66,7 +66,6 @@ class User {
         this.password = value;
     }
 
-
     getRoles(): Role[] {
         return this.roles;
     }
