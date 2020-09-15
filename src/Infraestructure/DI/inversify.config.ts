@@ -25,6 +25,7 @@ import CreatePlayerAdapter from "../../Presentation/Http/Adapters/Player/CreateP
 import CreatePlayerAction from '../../Presentation/Http/Actions/Player/CreatePlayerAction';
 import IndexPlayerHandler from '../../Aplication/Handlers/Player/IndexPlayerHandler';
 import IndexPlayerAction from '../../Presentation/Http/Actions/Player/IndexPlayerAction';
+import DocumentationRoutes from '../../Presentation/Http/Routes/documentation'
 
 const DIcontainer = new Container();
 
@@ -33,6 +34,7 @@ DIcontainer.bind<ApiRoutes>(ApiRoutes).toSelf();
 DIcontainer.bind<UserRoutes>(UserRoutes).toSelf();
 DIcontainer.bind<TeamRoutes>(TeamRoutes).toSelf();
 DIcontainer.bind<PlayerRoutes>(PlayerRoutes).toSelf();
+DIcontainer.bind<DocumentationRoutes>(DocumentationRoutes).toSelf();
 
 //repositories
 DIcontainer.bind<IUserRepository>(Types.IUserRepository).to(UserRepository);
