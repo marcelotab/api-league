@@ -1,0 +1,218 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "API League",
+      "version": "1.0.0",
+      "title": "API Liga de futbol"
+    },
+    "host": "liga-futbol.herokuapp.com",
+    "basePath": "/api/v1.0",
+    "tags": [
+      {
+        "name": "teams",
+        "description": "Operations about league teams"
+      },
+      {
+        "name": "players",
+        "description": "Operations about league players"
+      }
+    ],
+    "schemes": [],
+    "paths": {
+      "/teams": {
+        "get": {
+          "tags": [
+            "teams"
+          ],
+          "summary": "Return all teams",
+          "description": "Returns all teams with their players",
+          "operationId": "indexTeamAction",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Team"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        },
+        "post": {
+          "tags": [
+            "teams"
+          ],
+          "summary": "Add new team",
+          "description": "Adds a new team to the soccer league",
+          "operationId": "createTeamAction",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Soccer team to add",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "team created successfully"
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+      "/players": {
+        "get": {
+          "tags": [
+            "players"
+          ],
+          "summary": "Return all players",
+          "operationId": "indexPlayerAction",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Player"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        },
+        "post": {
+          "tags": [
+            "players"
+          ],
+          "summary": "Add new player",
+          "description": "Add a new player. Optionaly for a soccer team.",
+          "operationId": "createPlayerAction",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Player to add",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "surname",
+                  "status"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "surname": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "banned",
+                      "unbanned"
+                    ]
+                  },
+                  "team_id": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "player created successfully"
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      }
+    },
+    "definitions": {
+      "Team": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "players": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Player"
+            }
+          }
+        }
+      },
+      "Player": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "banned",
+              "unbanned"
+            ]
+          },
+          "team_id": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "securityDefinitions": {
+      "api_key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY"
+        }
+    }
+}
