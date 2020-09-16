@@ -9,6 +9,11 @@ class UserRepository extends TypeRepository implements IUserRepository {
         return await this.repository(User).save(user);
     }
 
+    public async findByEmail(email: string): Promise<User> {
+
+        return await this.repository(User).findOneOrFail({where: {email}});
+    }
+
 }
 
 export default UserRepository;

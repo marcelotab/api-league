@@ -4,6 +4,7 @@ import UserRoutes from "./user";
 import TeamRoutes from "./team";
 import PlayerRoutes from "./player";
 import DocumentationRoutes from "./documentation"
+import AuthRoutes from "./auth";
 
 @injectable()
 class ApiRoutes {
@@ -13,12 +14,14 @@ class ApiRoutes {
     private teamRoutes: TeamRoutes;
     private playerRoutes: PlayerRoutes;
     private docsRoutes: DocumentationRoutes;
+    private authRoutes: AuthRoutes;
 
     public constructor(
         @inject(DocumentationRoutes) docsRoutes: DocumentationRoutes,
         @inject(UserRoutes) userRoutes: UserRoutes,
         @inject(TeamRoutes) teamRoutes: TeamRoutes,
-        @inject(PlayerRoutes) playerRoutes: PlayerRoutes
+        @inject(PlayerRoutes) playerRoutes: PlayerRoutes,
+        @inject(AuthRoutes) authRoutes: AuthRoutes
     ) {
 
         this.router = express.Router();
@@ -26,6 +29,8 @@ class ApiRoutes {
         this.teamRoutes = teamRoutes;
         this.playerRoutes = playerRoutes;
         this.docsRoutes = docsRoutes;
+        this.playerRoutes = playerRoutes;
+        this.authRoutes = authRoutes;
         this.setRoutes();
     }
 
@@ -34,6 +39,7 @@ class ApiRoutes {
             res.send('Hello World!');
         });
         this.router.use('/docs', this.docsRoutes.getRoutes());
+        this.router.use('/auth', this.authRoutes.getRoutes());
         this.router.use('/users', this.userRoutes.getRoutes());
         this.router.use('/teams', this.teamRoutes.getRoutes());
         this.router.use('/players', this.playerRoutes.getRoutes());

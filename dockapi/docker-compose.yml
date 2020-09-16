@@ -32,5 +32,5 @@ services:
     volumes:
       - ../:/var/www
     working_dir: /var/www
-    command: yarn start
+    command: yarn dev
    

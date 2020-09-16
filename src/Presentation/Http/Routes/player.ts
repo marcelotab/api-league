@@ -1,10 +1,11 @@
-import { CreatePlayerSchema } from '../Validations/Schemas/Player/CreatePlayerSchema';
-import { Router, Request, Response } from 'express';
+import {CreatePlayerSchema} from '../Validations/Schemas/Player/CreatePlayerSchema';
+import {Request, Response, Router} from 'express';
 import {inject, injectable} from "inversify";
 import {asyncMiddleware} from "../Middelwares/AsyncMiddleware";
 import {validationMiddleware} from "../Middelwares/ValidationMiddleware";
 import CreatePlayerAction from "../Actions/Player/CreatePlayerAction";
 import IndexPlayerAction from "../Actions/Player/IndexPlayerAction"
+import {isAuthenticatedMiddleware} from "../Middelwares/Auth/IsAuthenticatedMiddleware";
 
 @injectable()
 class PlayerRoutes {
@@ -26,13 +27,15 @@ class PlayerRoutes {
     private setRoutes(): void {
 
         this.router.post('/',
+            isAuthenticatedMiddleware(),
             validationMiddleware(CreatePlayerSchema),
             asyncMiddleware((request: Request, response: Response) => {
                 this.createPlayerAction.execute(request, response);
             }),
         );
-        
+
         this.router.get('/',
+            isAuthenticatedMiddleware(),
             asyncMiddleware((request: Request, response: Response) => {
                 this.indexPlayerAction.execute(request, response);
             }),
