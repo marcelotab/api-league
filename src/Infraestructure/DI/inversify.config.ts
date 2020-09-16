@@ -25,6 +25,7 @@ import CreatePlayerAdapter from "../../Presentation/Http/Adapters/Player/CreateP
 import CreatePlayerAction from '../../Presentation/Http/Actions/Player/CreatePlayerAction';
 import IndexPlayerHandler from '../../Aplication/Handlers/Player/IndexPlayerHandler';
 import IndexPlayerAction from '../../Presentation/Http/Actions/Player/IndexPlayerAction';
+import DocumentationRoutes from '../../Presentation/Http/Routes/documentation'
 import LoginAction from "../../Presentation/Http/Actions/Auth/LoginAction";
 import AuthRoutes from "../../Presentation/Http/Routes/auth";
 import LoginAdapter from "../../Presentation/Http/Adapters/Auth/LoginAdapter";
@@ -39,6 +40,7 @@ DIcontainer.bind<ApiRoutes>(ApiRoutes).toSelf();
 DIcontainer.bind<UserRoutes>(UserRoutes).toSelf();
 DIcontainer.bind<TeamRoutes>(TeamRoutes).toSelf();
 DIcontainer.bind<PlayerRoutes>(PlayerRoutes).toSelf();
+DIcontainer.bind<DocumentationRoutes>(DocumentationRoutes).toSelf();
 DIcontainer.bind<AuthRoutes>(AuthRoutes).toSelf();
 
 //repositories
