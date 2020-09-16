@@ -24,27 +24,23 @@ class AuthService {
 
     public async signIn(email: string, password: string) {
 
-            const user = await this.userRepository.findByEmail(email);
+        const user = await this.userRepository.findByEmail(email);
 
+        if (!user) {
+            throw new Error(`Incorrect Email`);
+        }
 
-            console.log(user.getName());
-            console.log(user.getPassword());
+        const isPasswordValid = await this.checkIfUnencryptedPasswordIsValid(password, user.getPassword());
 
-            if(!user){
-                throw new Error(`Incorrect Email`);
-            }
+        if (!isPasswordValid) {
 
-            const isPasswordCorrect = await this.comparePassword(password, user.getPassword());
+            throw new Error(`Password incorrect, please try again`);
+        }
 
-            if(!isPasswordCorrect){
-
-                throw new Error(`Password incorrect, please try again`);
-            }
-
-            return this.tokenService.generate({userId: user.getId()}, process.env.TIME_EXPIRE);
+        return this.tokenService.generate({userId: user.getId(), userEmail: user.getEmail()}, process.env.TIME_EXPIRE);
     }
 
-    private async comparePassword(passwordPlain: string, passwordHashed: string): Promise<boolean> {
+    private async checkIfUnencryptedPasswordIsValid(passwordPlain: string, passwordHashed: string): Promise<boolean> {
 
         return await this.hashService.compare(passwordPlain, passwordHashed);
     }

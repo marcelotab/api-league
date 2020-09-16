@@ -5,6 +5,7 @@ import "reflect-metadata";
 import {Application} from "express";
 import DIcontainer from "./Infraestructure/DI/inversify.config";
 import ApiRoutes from "./Presentation/Http/Routes";
+import helmet from "helmet";
 
 class App {
     private app: Application;
@@ -33,7 +34,8 @@ class App {
     }
 
     private setMiddelwares():void{
-        this.app.use(bodyParser.json())
+        this.app.use(bodyParser.json());
+        this.app.use(helmet());
     }
 
     private setRoutes(): void {

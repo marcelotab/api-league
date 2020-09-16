@@ -14,15 +14,15 @@ class LoginHandler {
         this.authService = authService;
     }
 
-    public async handle(command: LoginCommand){
+    public async handle(command: LoginCommand) {
 
         const email = command.getEmail();
         const password = command.getPassword();
 
         try {
-              return this.authService.signIn(email, password);
+            return this.authService.signIn(email, password);
 
-        }catch (e) {
+        } catch (e) {
             return console.log(e.message);
         }
     }

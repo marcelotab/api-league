@@ -7,7 +7,7 @@ class HashService implements IHashService {
 
     public async hash(data: string): Promise<string> {
 
-         return await bcrypt.hash(data, 10);
+        return await bcrypt.hash(data, 10);
     }
 
     public async compare(data: string, hash: string): Promise<boolean> {

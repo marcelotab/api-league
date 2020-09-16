@@ -16,6 +16,10 @@ class TokenService {
         return jwt.sign(payload, this.jwtSecret, {expiresIn: timeExpire});
     }
 
+    public verify(token: string) {
+        return jwt.verify(token, this.jwtSecret);
+    }
+
 }
 
 export default TokenService;

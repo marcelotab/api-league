@@ -33,10 +33,11 @@ class ApiRoutes {
         this.router.get('/', (_req, res) => {
             res.send('Hello World!');
         });
+
+        this.router.use('/auth', this.authRoutes.getRoutes());
         this.router.use('/users', this.userRoutes.getRoutes());
         this.router.use('/teams', this.teamRoutes.getRoutes());
         this.router.use('/players', this.playerRoutes.getRoutes());
-        this.router.use('/auth', this.authRoutes.getRoutes());
     }
 
     public getRoutes(): express.Router {

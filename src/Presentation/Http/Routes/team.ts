@@ -4,7 +4,8 @@ import CreateTeamAction from "../Actions/Team/CreateTeamAction";
 import {inject, injectable} from "inversify";
 import IndexTeamAction from "../Actions/Team/IndexTeamAction";
 import { validationMiddleware } from '../Middelwares/ValidationMiddleware';
-import { CreateTeamSchema } from './../Validations/Schemas/Team/CreateTeamSchema';
+import {isAuthenticatedMiddleware} from "../Middelwares/Auth/IsAuthenticatedMiddleware";
+import {CreateTeamSchema} from "../Validations/Schemas/Team/CreateTeamSchema";
 
 
 @injectable()
@@ -27,13 +28,16 @@ class TeamRoutes {
     private setRoutes(): void {
 
         this.router.post('/',
+            isAuthenticatedMiddleware(),
             validationMiddleware(CreateTeamSchema),
             asyncMiddleware(async (request: express.Request, response: express.Response) => {
                 await this.createTeamAction.execute(request, response);
             }),
         );
         this.router.get(
-            '/', asyncMiddleware(async (request: express.Request, response: express.Response) => {
+            '/',
+            isAuthenticatedMiddleware(),
+            asyncMiddleware(async (request: express.Request, response: express.Response) => {
                 await this.indexTeamAction.execute(request, response);
             }),
         );
