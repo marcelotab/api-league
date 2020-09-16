@@ -7,6 +7,7 @@ import CreatePlayerAction from "../Actions/Player/CreatePlayerAction";
 import IndexPlayerAction from "../Actions/Player/IndexPlayerAction"
 import {isAuthenticatedMiddleware} from "../Middelwares/Auth/IsAuthenticatedMiddleware";
 
+
 @injectable()
 class PlayerRoutes {
 
@@ -29,15 +30,15 @@ class PlayerRoutes {
         this.router.post('/',
             isAuthenticatedMiddleware(),
             validationMiddleware(CreatePlayerSchema),
-            asyncMiddleware((request: Request, response: Response) => {
-                this.createPlayerAction.execute(request, response);
+            asyncMiddleware(async (request: Request, response: Response) => {
+                await this.createPlayerAction.execute(request, response);
             }),
         );
 
         this.router.get('/',
             isAuthenticatedMiddleware(),
-            asyncMiddleware((request: Request, response: Response) => {
-                this.indexPlayerAction.execute(request, response);
+            asyncMiddleware(async (request: Request, response: Response) => {
+                await this.indexPlayerAction.execute(request, response);
             }),
         );
     }

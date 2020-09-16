@@ -15,7 +15,7 @@ class IndexPlayerHandler {
     }
 
     public async handle() {
-        //To do: findByPaginated
+        //To do: findByPaginated.
         return await this.PlayerRepository.findAll();
     }
 

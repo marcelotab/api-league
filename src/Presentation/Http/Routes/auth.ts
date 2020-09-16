@@ -1,10 +1,7 @@
-import { CreatePlayerSchema } from '../Validations/Schemas/Player/CreatePlayerSchema';
 import { Router, Request, Response } from 'express';
 import {inject, injectable} from "inversify";
 import {asyncMiddleware} from "../Middelwares/AsyncMiddleware";
 import {validationMiddleware} from "../Middelwares/ValidationMiddleware";
-import CreatePlayerAction from "../Actions/Player/CreatePlayerAction";
-import IndexPlayerAction from "../Actions/Player/IndexPlayerAction"
 import LoginAction from "../Actions/Auth/LoginAction";
 import {LoginSchema} from "../Validations/Schemas/Auth/LoginSchema";
 

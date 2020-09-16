@@ -6,6 +6,9 @@ import {Application} from "express";
 import DIcontainer from "./Infraestructure/DI/inversify.config";
 import ApiRoutes from "./Presentation/Http/Routes";
 import helmet from "helmet";
+import { errorHandler } from './Presentation/Http/Middelwares/Errors/ErrorHandler';
+import { errorLog } from './Presentation/Http/Middelwares/Errors/ErrorLog';
+import { notFoundHandler } from './Presentation/Http/Middelwares/NotFoundHandler';
 
 class App {
     private app: Application;
@@ -31,6 +34,7 @@ class App {
         await this.setDatabaseConnection();
         this.setMiddelwares();
         this.setRoutes();
+        this.setFinalMiddlewares();
     }
 
     private setMiddelwares():void{
@@ -40,6 +44,12 @@ class App {
 
     private setRoutes(): void {
         this.app.use('/api/v1.0', this.apiRoutes.getRoutes());
+    }
+
+    private setFinalMiddlewares(): void{
+        this.app.use(errorLog);
+        this.app.use(errorHandler);
+        this.app.use(notFoundHandler);
     }
 
     private async setDatabaseConnection(): Promise<void> {
