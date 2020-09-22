@@ -1,5 +1,4 @@
 class LoginCommand {
-
     private readonly _email: string;
     private readonly _password: string;
 

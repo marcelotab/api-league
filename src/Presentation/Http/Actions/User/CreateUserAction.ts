@@ -1,11 +1,10 @@
-import CreateUserAdapter from "../../Adapters/User/CreateUserAdapter";
-import {inject, injectable} from "inversify";
-import CreateUserHandler from "../../../../Aplication/Handlers/User/CreateUserHandler";
+import CreateUserAdapter from '../../Adapters/User/CreateUserAdapter';
+import { inject, injectable } from 'inversify';
+import CreateUserHandler from '../../../../Aplication/Handlers/User/CreateUserHandler';
 import { Request, Response } from 'express';
 
 @injectable()
 class CreateUserAction {
-
     private createUserAdapter: CreateUserAdapter;
     private createUserHandler: CreateUserHandler;
 
@@ -18,14 +17,12 @@ class CreateUserAction {
     }
 
     public async execute(request: Request, response: Response): Promise<Response> {
-
         const command = this.createUserAdapter.adapt(request.body);
 
         const result = await this.createUserHandler.handle(command);
 
         return response.status(200).json(result);
     }
-
 }
 
 export default CreateUserAction;

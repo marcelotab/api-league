@@ -28,7 +28,6 @@ class CreatePlayerCommand {
     public getTeamId(): number {
         return this._team_id;
     }
-
 }
 
 export default CreatePlayerCommand;

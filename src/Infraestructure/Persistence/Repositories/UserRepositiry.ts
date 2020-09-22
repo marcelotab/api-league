@@ -1,7 +1,7 @@
 import User from '../../../Domain/Entities/User';
-import {IUserRepository} from "../../../Domain/Contracts/Repositories/IUserRepository";
+import { IUserRepository } from '../../../Domain/Contracts/Repositories/IUserRepository';
 import TypeRepository from './TypeRepository';
-import {injectable} from "inversify";
+import { injectable } from 'inversify';
 
 @injectable()
 class UserRepository extends TypeRepository implements IUserRepository {
@@ -10,10 +10,8 @@ class UserRepository extends TypeRepository implements IUserRepository {
     }
 
     public async findByEmail(email: string): Promise<User> {
-
-        return await this.repository(User).findOneOrFail({where: {email}});
+        return await this.repository(User).findOneOrFail({ where: { email } });
     }
-
 }
 
 export default UserRepository;

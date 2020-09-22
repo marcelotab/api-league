@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import App from './App';
-import express, {Application} from 'express';
+import express, { Application } from 'express';
 
 class Server {
     private express: Application;
@@ -26,4 +26,4 @@ class Server {
     }
 }
 
-export default new Server;
+export default new Server();

@@ -1,30 +1,24 @@
-import { CreatePlayerSchema } from '../Validations/Schemas/Player/CreatePlayerSchema';
 import { Router, Request, Response } from 'express';
-import {inject, injectable} from "inversify";
-import {asyncMiddleware} from "../Middelwares/AsyncMiddleware";
-import {validationMiddleware} from "../Middelwares/ValidationMiddleware";
-import CreatePlayerAction from "../Actions/Player/CreatePlayerAction";
-import IndexPlayerAction from "../Actions/Player/IndexPlayerAction"
-import LoginAction from "../Actions/Auth/LoginAction";
-import {LoginSchema} from "../Validations/Schemas/Auth/LoginSchema";
+import { inject, injectable } from 'inversify';
+import { asyncMiddleware } from '../Middelwares/AsyncMiddleware';
+import { validationMiddleware } from '../Middelwares/ValidationMiddleware';
+import LoginAction from '../Actions/Auth/LoginAction';
+import { LoginSchema } from '../Validations/Schemas/Auth/LoginSchema';
 
 @injectable()
 class AuthRoutes {
-
     private router: Router;
     private loginAction: LoginAction;
 
-    public constructor(
-        @inject(LoginAction) loginAction: LoginAction
-    ) {
+    public constructor(@inject(LoginAction) loginAction: LoginAction) {
         this.router = Router();
         this.setRoutes();
         this.loginAction = loginAction;
     }
 
     private setRoutes(): void {
-
-        this.router.post('/login',
+        this.router.post(
+            '/login',
             validationMiddleware(LoginSchema),
             asyncMiddleware((request: Request, response: Response) => {
                 this.loginAction.execute(request, response);
@@ -32,7 +26,7 @@ class AuthRoutes {
         );
     }
 
-    public getRoutes() {
+    public getRoutes(): Router {
         return this.router;
     }
 }

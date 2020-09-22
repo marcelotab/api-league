@@ -1,12 +1,10 @@
-import {IHashService} from "./IHashService";
+import { IHashService } from './IHashService';
 import bcrypt from 'bcrypt';
-import {injectable} from "inversify";
+import { injectable } from 'inversify';
 
 @injectable()
 class HashService implements IHashService {
-
     public async hash(data: string): Promise<string> {
-
         return await bcrypt.hash(data, 10);
     }
 

@@ -1,8 +1,7 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('roles')
 class Role {
-
     @PrimaryGeneratedColumn()
     public id: number;
 
@@ -13,7 +12,6 @@ class Role {
         this.name = name;
     }
 
-
     public getId(): number {
         return this.id;
     }
@@ -22,7 +20,7 @@ class Role {
         return this.name;
     }
 
-    public setName(value: string) {
+    public setName(value: string): void {
         this.name = value;
     }
 }

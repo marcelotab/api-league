@@ -1,11 +1,10 @@
 import { Router } from 'express';
 import { injectable } from 'inversify';
-import swaggerUi from 'swagger-ui-express'
-import swaggerDoc from '../Documentation/swagger.json'
+import swaggerUi from 'swagger-ui-express';
+import swaggerDoc from '../Documentation/swagger.json';
 
 @injectable()
 class DocumentationRoutes {
-    
     private router: Router;
 
     public constructor() {
@@ -14,17 +13,12 @@ class DocumentationRoutes {
     }
 
     private setRoutes(): void {
-
-        this.router.use('/',
-            swaggerUi.serve,
-            swaggerUi.setup(swaggerDoc)
-        );
+        this.router.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
     }
 
-    public getRoutes() {
+    public getRoutes(): Router {
         return this.router;
     }
-
 }
 
 export default DocumentationRoutes;
