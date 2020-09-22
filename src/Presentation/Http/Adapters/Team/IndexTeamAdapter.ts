@@ -1,11 +1,10 @@
 // import IndexTeamCommand from "../../../../Aplication/Commands/Team/IndexTeamCommand";
-import {inject, injectable} from "inversify";
+//import { inject, injectable } from 'inversify';
 // import {TeamSchema} from "../../Validations/Schemas/TeamSchema";
-import IndexTeamCommand from "../../../../Aplication/Commands/Team/IndexTeamCommand";
+//import IndexTeamCommand from '../../../../Aplication/Commands/Team/IndexTeamCommand';
 
-@injectable()
+//@injectable()
 class IndexTeamAdapter {
-
     // public adapt(data: any): IndexTeamCommand {
     //
     //     const rules = this.getValidationRules();
@@ -18,9 +17,7 @@ class IndexTeamAdapter {
     //     const {name} = data;
     //     return new IndexTeamCommand(name);
     // }
-
     // private getValidationRules = () => TeamSchema;
-
 }
 
 export default IndexTeamAdapter;

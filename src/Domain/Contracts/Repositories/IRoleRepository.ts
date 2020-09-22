@@ -1,6 +1,6 @@
-import Role from "../../Entities/Role";
+/* eslint-disable no-unused-vars */
+import Role from '../../Entities/Role';
 
 export interface IRoleRepository {
-
-    save(role): Promise<Role>
+    save(role: Role): Promise<Role>;
 }

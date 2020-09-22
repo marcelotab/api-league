@@ -1,11 +1,10 @@
 import { Request, Response } from 'express';
-import {inject, injectable} from "inversify";
-import CreatePlayerAdapter from "../../Adapters/Player/CreatePlayerAdapter";
-import CreatePlayerHandler from "../../../../Aplication/Handlers/Player/CreatePlayerHandler";
+import { inject, injectable } from 'inversify';
+import CreatePlayerAdapter from '../../Adapters/Player/CreatePlayerAdapter';
+import CreatePlayerHandler from '../../../../Aplication/Handlers/Player/CreatePlayerHandler';
 
 @injectable()
 class CreatePlayerAction {
-
     private createPlayerAdapter: CreatePlayerAdapter;
     private createPlayerHandler: CreatePlayerHandler;
 
@@ -18,14 +17,12 @@ class CreatePlayerAction {
     }
 
     public async execute(request: Request, response: Response): Promise<Response> {
-
         const command = this.createPlayerAdapter.adapt(request.body);
 
         const result = await this.createPlayerHandler.handle(command);
 
         return response.status(200).json(result);
     }
-
 }
 
 export default CreatePlayerAction;

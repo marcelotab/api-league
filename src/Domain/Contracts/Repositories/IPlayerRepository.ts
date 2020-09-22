@@ -1,7 +1,7 @@
-import Player from "../../Entities/Player";
+/* eslint-disable no-unused-vars */
+import Player from '../../Entities/Player';
 
 export interface IPlayerRepository {
-
-    save(player): Promise<Player>
-    findAll(): Promise<Player[]>
+    save(player: Player): Promise<Player>;
+    findAll(): Promise<Player[]>;
 }

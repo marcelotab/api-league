@@ -1,11 +1,9 @@
-import {NextFunction, Request, Response} from 'express';
-import TokenService from "../../../../Aplication/Services/TokenService";
+import { NextFunction, Request, Response } from 'express';
+import TokenService from '../../../../Aplication/Services/TokenService';
 
 export function isAuthenticatedMiddleware() {
-
-    return function (req: Request, res: Response, next: NextFunction) {
-
-        const token = <string> req.headers['authorization'];
+    return function (req: Request, res: Response, next: NextFunction): void {
+        const token = <string>req.headers['authorization'];
         if (!token) {
             throw new Error('Not token provided');
         }
@@ -18,6 +16,5 @@ export function isAuthenticatedMiddleware() {
         } catch (e) {
             res.status(401).json(e);
         }
-    }
-
+    };
 }
