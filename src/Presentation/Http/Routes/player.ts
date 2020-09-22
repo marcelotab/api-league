@@ -1,23 +1,21 @@
-import {CreatePlayerSchema} from '../Validations/Schemas/Player/CreatePlayerSchema';
-import {Request, Response, Router} from 'express';
-import {inject, injectable} from "inversify";
-import {asyncMiddleware} from "../Middelwares/AsyncMiddleware";
-import {validationMiddleware} from "../Middelwares/ValidationMiddleware";
-import CreatePlayerAction from "../Actions/Player/CreatePlayerAction";
-import IndexPlayerAction from "../Actions/Player/IndexPlayerAction"
-import {isAuthenticatedMiddleware} from "../Middelwares/Auth/IsAuthenticatedMiddleware";
-
+import { CreatePlayerSchema } from '../Validations/Schemas/Player/CreatePlayerSchema';
+import { Request, Response, Router } from 'express';
+import { inject, injectable } from 'inversify';
+import { asyncMiddleware } from '../Middelwares/AsyncMiddleware';
+import { validationMiddleware } from '../Middelwares/ValidationMiddleware';
+import CreatePlayerAction from '../Actions/Player/CreatePlayerAction';
+import IndexPlayerAction from '../Actions/Player/IndexPlayerAction';
+import { isAuthenticatedMiddleware } from '../Middelwares/Auth/IsAuthenticatedMiddleware';
 
 @injectable()
 class PlayerRoutes {
-
     private router: Router;
     private createPlayerAction: CreatePlayerAction;
     private indexPlayerAction: IndexPlayerAction;
 
     public constructor(
         @inject(CreatePlayerAction) createPlayerAction: CreatePlayerAction,
-        @inject(IndexPlayerAction) indexPlayerAction: IndexPlayerAction
+        @inject(IndexPlayerAction) indexPlayerAction: IndexPlayerAction,
     ) {
         this.router = Router();
         this.createPlayerAction = createPlayerAction;
@@ -26,8 +24,8 @@ class PlayerRoutes {
     }
 
     private setRoutes(): void {
-
-        this.router.post('/',
+        this.router.post(
+            '/',
             isAuthenticatedMiddleware(),
             validationMiddleware(CreatePlayerSchema),
             asyncMiddleware(async (request: Request, response: Response) => {
@@ -35,7 +33,8 @@ class PlayerRoutes {
             }),
         );
 
-        this.router.get('/',
+        this.router.get(
+            '/',
             isAuthenticatedMiddleware(),
             asyncMiddleware(async (request: Request, response: Response) => {
                 await this.indexPlayerAction.execute(request, response);
@@ -43,7 +42,7 @@ class PlayerRoutes {
         );
     }
 
-    public getRoutes() {
+    public getRoutes(): Router {
         return this.router;
     }
 }

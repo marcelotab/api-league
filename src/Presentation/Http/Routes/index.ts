@@ -1,14 +1,13 @@
 import * as express from 'express';
-import {inject, injectable} from "inversify";
-import UserRoutes from "./user";
-import TeamRoutes from "./team";
-import PlayerRoutes from "./player";
-import DocumentationRoutes from "./documentation"
-import AuthRoutes from "./auth";
+import { inject, injectable } from 'inversify';
+import UserRoutes from './user';
+import TeamRoutes from './team';
+import PlayerRoutes from './player';
+import DocumentationRoutes from './documentation';
+import AuthRoutes from './auth';
 
 @injectable()
 class ApiRoutes {
-
     private router: express.Router;
     private userRoutes: UserRoutes;
     private teamRoutes: TeamRoutes;
@@ -21,9 +20,8 @@ class ApiRoutes {
         @inject(UserRoutes) userRoutes: UserRoutes,
         @inject(TeamRoutes) teamRoutes: TeamRoutes,
         @inject(PlayerRoutes) playerRoutes: PlayerRoutes,
-        @inject(AuthRoutes) authRoutes: AuthRoutes
+        @inject(AuthRoutes) authRoutes: AuthRoutes,
     ) {
-
         this.router = express.Router();
         this.userRoutes = userRoutes;
         this.teamRoutes = teamRoutes;

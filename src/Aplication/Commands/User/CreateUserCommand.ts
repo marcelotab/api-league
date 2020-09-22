@@ -1,10 +1,8 @@
-
 class CreateUserCommand {
     private readonly _name: string;
     private readonly _surname: string;
     private readonly _email: string;
     private readonly _password: string;
-
 
     constructor(name: string, surname: string, email: string, password: string) {
         this._name = name;
@@ -12,7 +10,6 @@ class CreateUserCommand {
         this._email = email;
         this._password = password;
     }
-
 
     public getName(): string {
         return this._name;

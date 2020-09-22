@@ -1,4 +1,3 @@
-
 class CreateTeamCommand {
     private readonly _name: string;
 
@@ -9,7 +8,6 @@ class CreateTeamCommand {
     public getName(): string {
         return this._name;
     }
-
 }
 
 export default CreateTeamCommand;

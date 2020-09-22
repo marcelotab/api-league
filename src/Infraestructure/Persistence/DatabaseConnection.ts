@@ -1,11 +1,9 @@
-import {createConnection} from 'typeorm';
+import { createConnection } from 'typeorm';
 import path from 'path';
 const entitiesPath = path.join(__dirname, '../../Domain/Entities/*{.ts,.js}');
 
 export default class DatabaseConnection {
-
     public async create(): Promise<void> {
-
         const db_username = process.env.DB_USER;
         const db_password = process.env.DB_PASSWORD;
         const db_database = process.env.DB_NAME;
@@ -22,6 +20,6 @@ export default class DatabaseConnection {
             synchronize: true,
             logging: true,
             entities: [entitiesPath],
-        }).catch(err => console.log('error connection to db: ' + err));
+        }).catch((err) => console.log('error connection to db: ' + err));
     }
 }

@@ -1,5 +1,3 @@
-class IndexTeamCommand {
-
-}
+class IndexTeamCommand {}
 
 export default IndexTeamCommand;

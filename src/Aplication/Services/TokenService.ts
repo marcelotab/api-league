@@ -1,25 +1,21 @@
-import * as jwt from "jsonwebtoken";
-import {injectable} from "inversify";
+import * as jwt from 'jsonwebtoken';
+import { injectable } from 'inversify';
 
 @injectable()
 class TokenService {
-
     private readonly jwtSecret: string;
 
     constructor() {
-
         this.jwtSecret = process.env.JWT_SECRET;
     }
 
     public generate(payload: object, timeExpire: string | number): string {
-
-        return jwt.sign(payload, this.jwtSecret, {expiresIn: timeExpire});
+        return jwt.sign(payload, this.jwtSecret, { expiresIn: timeExpire });
     }
 
-    public verify(token: string) {
+    public verify(token: string): string | object {
         return jwt.verify(token, this.jwtSecret);
     }
-
 }
 
 export default TokenService;

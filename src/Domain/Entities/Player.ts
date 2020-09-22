@@ -1,11 +1,10 @@
-import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {StatusPlayer} from "../Enums/StatusPlayer";
-import Team from "./Team";
-import Ban from "./Ban";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { StatusPlayer } from '../Enums/StatusPlayer';
+import Team from './Team';
+import Ban from './Ban';
 
 @Entity('players')
 class Player {
-
     @PrimaryGeneratedColumn()
     public id: number;
 
@@ -16,16 +15,16 @@ class Player {
     public surname: string;
 
     @Column({
-        type: "enum",
+        type: 'enum',
         enum: StatusPlayer,
-        default: StatusPlayer.UNBANNED
+        default: StatusPlayer.UNBANNED,
     })
     public status: StatusPlayer;
 
-    @ManyToOne(_type => Team, team => team.players)
+    @ManyToOne(() => Team, (team) => team.players)
     public team: Team;
 
-    @OneToMany(_type => Ban, ban => ban.player)
+    @OneToMany(() => Ban, (ban) => ban.player)
     public bans: Ban[];
 
     public constructor(name: string, surname: string, status: StatusPlayer) {
@@ -42,7 +41,7 @@ class Player {
         return this.name;
     }
 
-    public setName(value: string) {
+    public setName(value: string): void {
         this.name = value;
     }
 
@@ -50,7 +49,7 @@ class Player {
         return this.surname;
     }
 
-    public setSurname(value: string) {
+    public setSurname(value: string): void {
         this.surname = value;
     }
 
@@ -58,7 +57,7 @@ class Player {
         return this.status;
     }
 
-    public setStatus(value: StatusPlayer) {
+    public setStatus(value: StatusPlayer): void {
         this.status = value;
     }
 
@@ -66,7 +65,7 @@ class Player {
         return this.team;
     }
 
-    public setTeam(value: Team) {
+    public setTeam(value: Team): void {
         this.team = value;
     }
 
@@ -74,7 +73,7 @@ class Player {
         return this.bans;
     }
 
-    public setBans(value: Ban[]) {
+    public setBans(value: Ban[]): void {
         this.bans = value;
     }
 }

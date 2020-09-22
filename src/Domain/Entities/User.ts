@@ -1,9 +1,8 @@
-import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from "typeorm";
-import Role from "./Role";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import Role from './Role';
 
 @Entity('users')
 class User {
-
     @PrimaryGeneratedColumn()
     public id: number;
 
@@ -13,14 +12,15 @@ class User {
     @Column()
     public surname: string;
 
-    @Column({unique: true})
+    @Column({ unique: true })
     public email: string;
 
     @Column()
     public password: string;
 
-    @ManyToMany(_type => Role)
-    @JoinTable() public roles: Role[];
+    @ManyToMany(() => Role)
+    @JoinTable()
+    public roles: Role[];
 
     public constructor(name: string, surname: string, email: string, password: string) {
         this.name = name;
@@ -28,7 +28,6 @@ class User {
         this.email = email;
         this.password = password;
     }
-
 
     public getId(): number {
         return this.id;
@@ -38,7 +37,7 @@ class User {
         return this.name;
     }
 
-    public setName(value: string) {
+    public setName(value: string): void {
         this.name = value;
     }
 
@@ -46,7 +45,7 @@ class User {
         return this.surname;
     }
 
-    public setSurname(value: string) {
+    public setSurname(value: string): void {
         this.surname = value;
     }
 
@@ -54,7 +53,7 @@ class User {
         return this.email;
     }
 
-    public setEmail(value: string) {
+    public setEmail(value: string): void {
         this.email = value;
     }
 
@@ -62,7 +61,7 @@ class User {
         return this.password;
     }
 
-    public setPassword(value: string) {
+    public setPassword(value: string): void {
         this.password = value;
     }
 
@@ -70,7 +69,7 @@ class User {
         return this.roles;
     }
 
-    setRoles(value: Role[]) {
+    setRoles(value: Role[]): void {
         this.roles = value;
     }
 }

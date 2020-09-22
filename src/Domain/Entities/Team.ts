@@ -1,16 +1,15 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import Player from "./Player";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import Player from './Player';
 
 @Entity('teams')
 class Team {
-
     @PrimaryGeneratedColumn()
     public id: number;
 
     @Column()
     public name: string;
 
-    @OneToMany(_type => Player, player => player.team)
+    @OneToMany(() => Player, (player) => player.team)
     public players: Player[];
 
     public constructor(name: string) {
@@ -25,15 +24,15 @@ class Team {
         return this.name;
     }
 
-    public setName(value: string) {
+    public setName(value: string): void {
         this.name = value;
     }
 
-   public getPlayers(): Player[] {
+    public getPlayers(): Player[] {
         return this.players;
     }
 
-    public setPlayers(value: Player[]) {
+    public setPlayers(value: Player[]): void {
         this.players = value;
     }
 }

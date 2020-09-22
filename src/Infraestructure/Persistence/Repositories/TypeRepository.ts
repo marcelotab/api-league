@@ -1,5 +1,6 @@
-import {getManager} from 'typeorm';
-import {injectable} from 'inversify';
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { getManager } from 'typeorm';
+import { injectable } from 'inversify';
 
 @injectable()
 export default class TypeRepository {

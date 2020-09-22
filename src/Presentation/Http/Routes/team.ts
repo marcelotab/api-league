@@ -1,23 +1,21 @@
 import * as express from 'express';
-import {asyncMiddleware} from "../Middelwares/AsyncMiddleware";
-import CreateTeamAction from "../Actions/Team/CreateTeamAction";
-import {inject, injectable} from "inversify";
-import IndexTeamAction from "../Actions/Team/IndexTeamAction";
+import { asyncMiddleware } from '../Middelwares/AsyncMiddleware';
+import CreateTeamAction from '../Actions/Team/CreateTeamAction';
+import { inject, injectable } from 'inversify';
+import IndexTeamAction from '../Actions/Team/IndexTeamAction';
 import { validationMiddleware } from '../Middelwares/ValidationMiddleware';
-import {isAuthenticatedMiddleware} from "../Middelwares/Auth/IsAuthenticatedMiddleware";
-import {CreateTeamSchema} from "../Validations/Schemas/Team/CreateTeamSchema";
-
+import { isAuthenticatedMiddleware } from '../Middelwares/Auth/IsAuthenticatedMiddleware';
+import { CreateTeamSchema } from '../Validations/Schemas/Team/CreateTeamSchema';
 
 @injectable()
 class TeamRoutes {
-
     private router: express.Router;
     private createTeamAction: CreateTeamAction;
     private indexTeamAction: IndexTeamAction;
 
     public constructor(
         @inject(CreateTeamAction) createTeamAction: CreateTeamAction,
-        @inject(IndexTeamAction) indexTeamAction: IndexTeamAction
+        @inject(IndexTeamAction) indexTeamAction: IndexTeamAction,
     ) {
         this.router = express.Router();
         this.createTeamAction = createTeamAction;
@@ -26,8 +24,8 @@ class TeamRoutes {
     }
 
     private setRoutes(): void {
-
-        this.router.post('/',
+        this.router.post(
+            '/',
             isAuthenticatedMiddleware(),
             validationMiddleware(CreateTeamSchema),
             asyncMiddleware(async (request: express.Request, response: express.Response) => {
@@ -43,7 +41,7 @@ class TeamRoutes {
         );
     }
 
-    public getRoutes() {
+    public getRoutes(): express.Router {
         return this.router;
     }
 }

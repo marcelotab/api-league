@@ -1,9 +1,8 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import Player from "./Player";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import Player from './Player';
 
 @Entity('bans')
 class Ban {
-
     @PrimaryGeneratedColumn()
     public id: number;
 
@@ -13,7 +12,7 @@ class Ban {
     @Column()
     public dateTo: Date;
 
-    @ManyToOne(_type => Player, player => player.bans)
+    @ManyToOne(() => Player, (player) => player.bans)
     public player: Player;
 
     public constructor(dateFrom: Date, dateTo: Date, player: Player) {
@@ -30,7 +29,7 @@ class Ban {
         return this.dateFrom;
     }
 
-    public setDateFrom(value: Date) {
+    public setDateFrom(value: Date): void {
         this.dateFrom = value;
     }
 
@@ -38,7 +37,7 @@ class Ban {
         return this.dateTo;
     }
 
-    public setDateTo(value: Date) {
+    public setDateTo(value: Date): void {
         this.dateTo = value;
     }
 
@@ -46,7 +45,7 @@ class Ban {
         return this.player;
     }
 
-    public setPlayer(value: Player) {
+    public setPlayer(value: Player): void {
         this.player = value;
     }
 }
