@@ -11,7 +11,7 @@ export function isAuthenticatedMiddleware() {
         const tokenService = new TokenService();
 
         try {
-            tokenService.verify(token.split(' ')[1]);
+            tokenService.verify(token.replace('Bearer ', ''));
             next();
         } catch (e) {
             res.status(401).json(e);
