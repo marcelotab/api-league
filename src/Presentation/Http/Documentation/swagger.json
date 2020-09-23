@@ -15,6 +15,14 @@
         {
             "name": "players",
             "description": "Operations about league players"
+        },
+        {
+            "name": "users",
+            "description": "Operations about users"
+        },
+        {
+            "name": "auth",
+            "description": "Operations on authentication"
         }
     ],
     "schemes": [],
@@ -37,7 +45,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "JWTAuth": []
                     }
                 ]
             },
@@ -55,9 +63,12 @@
                         "required": true,
                         "schema": {
                             "type": "object",
+                            "required": ["name"],
                             "properties": {
                                 "name": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "minLength": 3,
+                                    "maxLength": 30
                                 }
                             }
                         }
@@ -70,7 +81,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "JWTAuth": []
                     }
                 ]
             }
@@ -92,7 +103,7 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "JWTAuth": []
                     }
                 ]
             },
@@ -113,17 +124,22 @@
                             "required": ["name", "surname", "status"],
                             "properties": {
                                 "name": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "minLength": 3,
+                                    "maxLength": 30
                                 },
                                 "surname": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "minLength": 3,
+                                    "maxLength": 30
                                 },
                                 "status": {
                                     "type": "string",
                                     "enum": ["banned", "unbanned"]
                                 },
                                 "team_id": {
-                                    "type": "number"
+                                    "type": "number",
+                                    "minimum": 1
                                 }
                             }
                         }
@@ -136,9 +152,74 @@
                 },
                 "security": [
                     {
-                        "api_key": []
+                        "JWTAuth": []
                     }
                 ]
+            }
+        },
+        "/users": {
+            "post": {
+                "tags": ["users"],
+                "summary": "Register new user",
+                "description": "Add a new user",
+                "operationId": "createUserAction",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User to add",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "user registered successfully"
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": ["auth"],
+                "summary": "Log Into API league",
+                "description": "Return JSON Web Token",
+                "operationId": "loginAction",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User to login",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": ["email", "password"],
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "format": "email"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "format": "password"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successful login",
+                        "schema": {
+                            "type": "string",
+                            "format": "JWT"
+                        }
+                    }
+                }
             }
         }
     },
@@ -147,10 +228,14 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 30
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 30
                 },
                 "players": {
                     "type": "array",
@@ -167,26 +252,51 @@
                     "type": "string"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 30
                 },
                 "surname": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 30
                 },
                 "status": {
                     "type": "string",
                     "enum": ["banned", "unbanned"]
+                }
+            }
+        },
+        "User": {
+            "type": "object",
+            "required": ["name", "surname", "email", "password"],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 30
                 },
-                "team_id": {
-                    "type": "number"
+                "surname": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 30
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "password": {
+                    "type": "string",
+                    "format": "password"
                 }
             }
         }
     },
     "securityDefinitions": {
-        "api_key": {
+        "JWTAuth": {
             "type": "apiKey",
             "in": "header",
-            "name": "X-API-KEY"
+            "name": "Authorization"
         }
     }
 }
