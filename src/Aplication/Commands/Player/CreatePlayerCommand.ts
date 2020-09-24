@@ -1,32 +1,32 @@
 import { StatusPlayer } from './../../../Domain/Enums/StatusPlayer';
 
 class CreatePlayerCommand {
-    private readonly _name: string;
-    private readonly _surname: string;
-    private readonly _status: StatusPlayer;
-    private readonly _team_id: number;
+    private readonly name: string;
+    private readonly surname: string;
+    private readonly status: StatusPlayer;
+    private readonly teamId: number;
 
-    constructor(name: string, surname: string, status: string, team_id: number) {
-        this._name = name;
-        this._surname = surname;
-        this._status = <StatusPlayer>status;
-        this._team_id = team_id;
+    constructor(name: string, surname: string, status: string, teamId: number) {
+        this.name = name;
+        this.surname = surname;
+        this.status = <StatusPlayer>status;
+        this.teamId = teamId;
     }
 
     public getName(): string {
-        return this._name;
+        return this.name;
     }
 
     public getSurname(): string {
-        return this._surname;
+        return this.surname;
     }
 
     public getStatus(): StatusPlayer {
-        return this._status;
+        return this.status;
     }
 
     public getTeamId(): number {
-        return this._team_id;
+        return this.teamId;
     }
 }
 

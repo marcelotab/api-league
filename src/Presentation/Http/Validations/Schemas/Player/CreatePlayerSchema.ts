@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention*/
 import Joi, { Schema } from 'joi';
 import { StatusPlayer } from '../../../../../Domain/Enums/StatusPlayer';
 

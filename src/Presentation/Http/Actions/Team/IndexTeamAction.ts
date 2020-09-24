@@ -6,21 +6,21 @@ import { Request, Response } from 'express';
 @injectable()
 class IndexTeamAction {
     // private IndexTeamAdapter: IndexTeamAdapter;
-    private IndexTeamHandler: IndexTeamHandler;
+    private indexTeamHandler: IndexTeamHandler;
 
     constructor(
         // @inject(IndexTeamAdapter) IndexTeamAdapter: IndexTeamAdapter,
-        @inject(IndexTeamHandler) IndexTeamHandler: IndexTeamHandler,
+        @inject(IndexTeamHandler) indexTeamHandler: IndexTeamHandler,
     ) {
         // this.IndexTeamAdapter = IndexTeamAdapter;
-        this.IndexTeamHandler = IndexTeamHandler;
+        this.indexTeamHandler = indexTeamHandler;
     }
 
     public async execute(request: Request, response: Response): Promise<Response> {
         // const command = this.IndexTeamAdapter.adapt(request.body);
         console.log(request.body);
         // const result = this.IndexTeamHandler.handle(command);
-        const result = await this.IndexTeamHandler.handle();
+        const result = await this.indexTeamHandler.handle();
 
         return response.status(200).json(result);
     }

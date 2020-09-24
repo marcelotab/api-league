@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention*/
 export const Types = {
     IBanRepository: Symbol.for('IBanRepository'),
     IPlayerRepository: Symbol.for('IPlayerRepository'),

@@ -1,18 +1,18 @@
 class LoginCommand {
-    private readonly _email: string;
-    private readonly _password: string;
+    private readonly email: string;
+    private readonly password: string;
 
     constructor(email: string, password: string) {
-        this._email = email;
-        this._password = password;
+        this.email = email;
+        this.password = password;
     }
 
     public getEmail(): string {
-        return this._email;
+        return this.email;
     }
 
     public getPassword(): string {
-        return this._password;
+        return this.password;
     }
 }
 

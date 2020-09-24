@@ -4,19 +4,19 @@ const entitiesPath = path.join(__dirname, '../../Domain/Entities/*{.ts,.js}');
 
 export default class DatabaseConnection {
     public async create(): Promise<void> {
-        const db_username = process.env.DB_USER;
-        const db_password = process.env.DB_PASSWORD;
-        const db_database = process.env.DB_NAME;
-        const db_port = process.env.DB_PORT;
-        const db_host = process.env.DB_HOST;
+        const dbUsername = process.env.DB_USER;
+        const dbPassword = process.env.DB_PASSWORD;
+        const dbDatabase = process.env.DB_NAME;
+        const dbPort = process.env.DB_PORT;
+        const dbHost = process.env.DB_HOST;
 
         await createConnection({
             type: 'mysql',
-            host: db_host,
-            port: Number(db_port),
-            username: db_username,
-            password: db_password,
-            database: db_database,
+            host: dbHost,
+            port: Number(dbPort),
+            username: dbUsername,
+            password: dbPassword,
+            database: dbDatabase,
             synchronize: true,
             logging: true,
             entities: [entitiesPath],

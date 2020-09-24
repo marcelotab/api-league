@@ -33,6 +33,7 @@ import AuthService from '../../Aplication/Services/AuthService';
 import TokenService from '../../Aplication/Services/TokenService';
 import LoginHandler from '../../Aplication/Handlers/Auth/LoginHandler';
 
+/* eslint-disable-next-line @typescript-eslint/naming-convention*/
 const DIcontainer = new Container();
 
 //routes

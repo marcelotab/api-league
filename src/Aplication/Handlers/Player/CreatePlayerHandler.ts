@@ -7,10 +7,10 @@ import Team from '../../../Domain/Entities/Team';
 
 @injectable()
 class CreatePlayerHandler {
-    private PlayerRepository: IPlayerRepository;
+    private playerRepository: IPlayerRepository;
 
-    constructor(@inject(Types.IPlayerRepository) PlayerRepository: IPlayerRepository) {
-        this.PlayerRepository = PlayerRepository;
+    constructor(@inject(Types.IPlayerRepository) playerRepository: IPlayerRepository) {
+        this.playerRepository = playerRepository;
     }
 
     public async handle(command: CreatePlayerCommand): Promise<any> {
@@ -20,7 +20,7 @@ class CreatePlayerHandler {
             player.team = <Team>{ id: command.getTeamId() };
         }
 
-        await this.PlayerRepository.save(player);
+        await this.playerRepository.save(player);
         return player;
     }
 }

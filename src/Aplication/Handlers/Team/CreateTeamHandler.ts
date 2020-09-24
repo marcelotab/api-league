@@ -6,15 +6,15 @@ import Team from '../../../Domain/Entities/Team';
 
 @injectable()
 class CreateTeamHandler {
-    private TeamRepository: ITeamRepository;
+    private teamRepository: ITeamRepository;
 
-    constructor(@inject(Types.ITeamRepository) TeamRepository: ITeamRepository) {
-        this.TeamRepository = TeamRepository;
+    constructor(@inject(Types.ITeamRepository) teamRepository: ITeamRepository) {
+        this.teamRepository = teamRepository;
     }
 
     public async handle(command: CreateTeamCommand): Promise<Team> {
         const team = new Team(command.getName());
-        await this.TeamRepository.save(team);
+        await this.teamRepository.save(team);
         return team;
     }
 }

@@ -33,9 +33,6 @@ class ApiRoutes {
     }
 
     private setRoutes(): void {
-        this.router.get('/', (_req, res) => {
-            res.send('Hello World!');
-        });
         this.router.use('/docs', this.docsRoutes.getRoutes());
         this.router.use('/auth', this.authRoutes.getRoutes());
         this.router.use('/users', this.userRoutes.getRoutes());

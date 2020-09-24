@@ -5,15 +5,15 @@ import Team from '../../../Domain/Entities/Team';
 
 @injectable()
 class IndexTeamHandler {
-    private TeamRepository: ITeamRepository;
+    private teamRepository: ITeamRepository;
 
-    constructor(@inject(Types.ITeamRepository) TeamRepository: ITeamRepository) {
-        this.TeamRepository = TeamRepository;
+    constructor(@inject(Types.ITeamRepository) teamRepository: ITeamRepository) {
+        this.teamRepository = teamRepository;
     }
 
     public async handle(): Promise<Team[]> {
         //To do: findByPaginated
-        return await this.TeamRepository.find({ relations: ['players'] });
+        return await this.teamRepository.find({ relations: ['players'] });
     }
 }
 

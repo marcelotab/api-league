@@ -1,12 +1,12 @@
 class CreateTeamCommand {
-    private readonly _name: string;
+    private readonly name: string;
 
     constructor(name: string) {
-        this._name = name;
+        this.name = name;
     }
 
     public getName(): string {
-        return this._name;
+        return this.name;
     }
 }
 

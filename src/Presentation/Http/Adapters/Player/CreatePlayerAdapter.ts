@@ -3,10 +3,11 @@ import { injectable } from 'inversify';
 
 @injectable()
 class CreatePlayerAdapter {
+    /* eslint-disable-next-line @typescript-eslint/naming-convention*/
     public adapt(data: { name; surname; status; team_id }): CreatePlayerCommand {
-        const { name, surname, status, team_id } = data;
+        const { name, surname, status, team_id: teamId } = data;
 
-        return new CreatePlayerCommand(name, surname, status, team_id);
+        return new CreatePlayerCommand(name, surname, status, teamId);
     }
 }
 

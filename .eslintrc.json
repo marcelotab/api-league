@@ -3,21 +3,42 @@
         "node": true,
         "es2020": true
     },
-    "extends": [
-        "eslint:recommended",
-        "prettier"
-    ],
+    "extends": ["eslint:recommended", "prettier"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 11,
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": "tsconfig.json"
     },
-    "plugins": [
-        "@typescript-eslint"
-    ],
+    "plugins": ["@typescript-eslint"],
     "rules": {
         "@typescript-eslint/explicit-module-boundary-types": "error",
         "@typescript-eslint/ban-ts-comment": 0,
-        "@typescript-eslint/ban-types": 0
+        "@typescript-eslint/ban-types": 0,
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "default",
+                "format": ["camelCase"]
+            },
+            {
+                "selector": ["variable", "parameter"],
+                "format": ["camelCase", "UPPER_CASE"]
+            },
+            {
+                "selector": ["typeLike"],
+                "format": ["PascalCase"]
+            },
+            {
+                "selector": "enumMember",
+                "format": ["UPPER_CASE"]
+            },
+            {
+                "selector": "variable",
+                "types": ["boolean"],
+                "format": ["PascalCase"],
+                "prefix": ["is", "should", "has", "can", "did", "will"]
+            }
+        ]
     }
 }

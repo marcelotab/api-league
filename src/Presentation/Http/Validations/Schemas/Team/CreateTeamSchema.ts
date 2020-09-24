@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention*/
 import Joi, { Schema } from 'joi';
 
 export const CreateTeamSchema: Schema = Joi.object().keys({

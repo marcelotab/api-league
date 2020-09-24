@@ -5,15 +5,15 @@ import Player from '../../../Domain/Entities/Player';
 
 @injectable()
 class IndexPlayerHandler {
-    private PlayerRepository: IPlayerRepository;
+    private playerRepository: IPlayerRepository;
 
-    constructor(@inject(Types.IPlayerRepository) PlayerRepository: IPlayerRepository) {
-        this.PlayerRepository = PlayerRepository;
+    constructor(@inject(Types.IPlayerRepository) playerRepository: IPlayerRepository) {
+        this.playerRepository = playerRepository;
     }
 
     public async handle(): Promise<Player[]> {
         //To do: findByPaginated
-        return await this.PlayerRepository.findAll();
+        return await this.playerRepository.findAll();
     }
 }
 

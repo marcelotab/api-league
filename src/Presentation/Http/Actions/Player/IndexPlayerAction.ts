@@ -4,15 +4,15 @@ import IndexPlayerHandler from '../../../../Aplication/Handlers/Player/IndexPlay
 
 @injectable()
 class IndexPlayerAction {
-    private IndexPlayerHandler: IndexPlayerHandler;
+    private indexPlayerHandler: IndexPlayerHandler;
 
-    constructor(@inject(IndexPlayerHandler) IndexPlayerHandler: IndexPlayerHandler) {
-        this.IndexPlayerHandler = IndexPlayerHandler;
+    constructor(@inject(IndexPlayerHandler) indexPlayerHandler: IndexPlayerHandler) {
+        this.indexPlayerHandler = indexPlayerHandler;
     }
 
     public async execute(request: Request, response: Response): Promise<Response> {
         console.log(request.body);
-        const result = await this.IndexPlayerHandler.handle();
+        const result = await this.indexPlayerHandler.handle();
 
         return response.status(200).json(result);
     }

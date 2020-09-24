@@ -1,30 +1,30 @@
 class CreateUserCommand {
-    private readonly _name: string;
-    private readonly _surname: string;
-    private readonly _email: string;
-    private readonly _password: string;
+    private readonly name: string;
+    private readonly surname: string;
+    private readonly email: string;
+    private readonly password: string;
 
     constructor(name: string, surname: string, email: string, password: string) {
-        this._name = name;
-        this._surname = surname;
-        this._email = email;
-        this._password = password;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
     }
 
     public getName(): string {
-        return this._name;
+        return this.name;
     }
 
     public getSurname(): string {
-        return this._surname;
+        return this.surname;
     }
 
     public getEmail(): string {
-        return this._email;
+        return this.email;
     }
 
     public getPassword(): string {
-        return this._password;
+        return this.password;
     }
 }
 
