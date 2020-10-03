@@ -61,7 +61,7 @@
             "npx prettier --write",
             "git add"
         ],
-        "*": [
+        "*.json": [
             "npx prettier --write"
         ]
     }
