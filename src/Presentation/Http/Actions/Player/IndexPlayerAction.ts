@@ -10,8 +10,8 @@ class IndexPlayerAction {
         this.indexPlayerHandler = indexPlayerHandler;
     }
 
+    // @ts-ignore
     public async execute(request: Request, response: Response): Promise<Response> {
-        console.log(request.body);
         const result = await this.indexPlayerHandler.handle();
 
         return response.status(200).json(result);

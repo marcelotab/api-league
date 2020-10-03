@@ -5,6 +5,7 @@ import TeamRoutes from './team';
 import PlayerRoutes from './player';
 import DocumentationRoutes from './documentation';
 import AuthRoutes from './auth';
+import BanRoutes from './ban';
 
 @injectable()
 class ApiRoutes {
@@ -14,6 +15,7 @@ class ApiRoutes {
     private playerRoutes: PlayerRoutes;
     private docsRoutes: DocumentationRoutes;
     private authRoutes: AuthRoutes;
+    private banRoutes: BanRoutes;
 
     public constructor(
         @inject(DocumentationRoutes) docsRoutes: DocumentationRoutes,
@@ -21,6 +23,7 @@ class ApiRoutes {
         @inject(TeamRoutes) teamRoutes: TeamRoutes,
         @inject(PlayerRoutes) playerRoutes: PlayerRoutes,
         @inject(AuthRoutes) authRoutes: AuthRoutes,
+        @inject(BanRoutes) banRoutes: BanRoutes,
     ) {
         this.router = express.Router();
         this.userRoutes = userRoutes;
@@ -29,6 +32,7 @@ class ApiRoutes {
         this.docsRoutes = docsRoutes;
         this.playerRoutes = playerRoutes;
         this.authRoutes = authRoutes;
+        this.banRoutes = banRoutes;
         this.setRoutes();
     }
 
@@ -38,6 +42,7 @@ class ApiRoutes {
         this.router.use('/users', this.userRoutes.getRoutes());
         this.router.use('/teams', this.teamRoutes.getRoutes());
         this.router.use('/players', this.playerRoutes.getRoutes());
+        this.router.use('/bans', this.banRoutes.getRoutes());
     }
 
     public getRoutes(): express.Router {

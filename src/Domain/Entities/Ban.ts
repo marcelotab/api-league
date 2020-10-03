@@ -6,10 +6,10 @@ class Ban {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @Column()
+    @Column({ type: 'date' })
     public dateFrom: Date;
 
-    @Column()
+    @Column({ type: 'date' })
     public dateTo: Date;
 
     @ManyToOne(() => Player, (player) => player.bans)

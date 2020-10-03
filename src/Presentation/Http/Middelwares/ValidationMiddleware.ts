@@ -7,8 +7,8 @@ function validate(data: any, rules: Schema) {
 }
 
 export function validationMiddleware(rules: Schema, check = 'body'): any {
+    // @ts-ignore
     return function (req: Request, res: Response, next: NextFunction) {
-        console.log(res);
         const error = validate(req[check], rules);
 
         error ? next(error) : next();
