@@ -40,6 +40,12 @@ import CreateBanAction from '../../Presentation/Http/Actions/Ban/CreateBanAction
 import CreateBanHandler from '../../Aplication/Handlers/Ban/CreateBanHandler';
 import IndexBanAction from '../../Presentation/Http/Actions/Ban/IndexBanAction';
 import IndexBanHandler from '../../Aplication/Handlers/Ban/IndexBanHandler';
+import DeleteTeamAdapter from '../../Presentation/Http/Adapters/Team/DeleteTeamAdapter';
+import UpdateTeamAdapter from '../../Presentation/Http/Adapters/Team/UpdateTeamAdapter';
+import UpdateTeamAction from '../../Presentation/Http/Actions/Team/UpdateTeamAction';
+import DeleteTeamAction from '../../Presentation/Http/Actions/Team/DeleteTeamAction';
+import UpdateTeamHandler from '../../Aplication/Handlers/Team/UpdateTeamHandler';
+import DeleteTeamHandler from '../../Aplication/Handlers/Team/DeleteTeamHandler';
 
 /* eslint-disable-next-line @typescript-eslint/naming-convention*/
 const DIcontainer = new Container();
@@ -61,10 +67,13 @@ DIcontainer.bind<IBanRepository>(Types.IBanRepository).to(BanRepository);
 
 //adapters
 DIcontainer.bind<CreateUserAdapter>(CreateUserAdapter).toSelf();
-DIcontainer.bind<CreateTeamAdapter>(CreateTeamAdapter).toSelf();
 DIcontainer.bind<CreatePlayerAdapter>(CreatePlayerAdapter).toSelf();
 DIcontainer.bind<CreateBanAdapter>(CreateBanAdapter).toSelf();
 DIcontainer.bind<LoginAdapter>(LoginAdapter).toSelf();
+
+DIcontainer.bind<CreateTeamAdapter>(CreateTeamAdapter).toSelf();
+DIcontainer.bind<UpdateTeamAdapter>(UpdateTeamAdapter).toSelf();
+DIcontainer.bind<DeleteTeamAdapter>(DeleteTeamAdapter).toSelf();
 
 //services
 DIcontainer.bind<IHashService>(Types.IHashService).to(HashService);
@@ -73,22 +82,28 @@ DIcontainer.bind<TokenService>(TokenService).to(TokenService);
 
 //actions
 DIcontainer.bind<CreateUserAction>(CreateUserAction).toSelf();
-DIcontainer.bind<CreateTeamAction>(CreateTeamAction).toSelf();
-DIcontainer.bind<IndexTeamAction>(IndexTeamAction).toSelf();
 DIcontainer.bind<CreatePlayerAction>(CreatePlayerAction).toSelf();
 DIcontainer.bind<IndexPlayerAction>(IndexPlayerAction).toSelf();
 DIcontainer.bind<CreateBanAction>(CreateBanAction).toSelf();
 DIcontainer.bind<IndexBanAction>(IndexBanAction).toSelf();
 DIcontainer.bind<LoginAction>(LoginAction).toSelf();
 
+DIcontainer.bind<CreateTeamAction>(CreateTeamAction).toSelf();
+DIcontainer.bind<IndexTeamAction>(IndexTeamAction).toSelf();
+DIcontainer.bind<UpdateTeamAction>(UpdateTeamAction).toSelf();
+DIcontainer.bind<DeleteTeamAction>(DeleteTeamAction).toSelf();
+
 //handlers
 DIcontainer.bind<CreateUserHandler>(CreateUserHandler).toSelf();
-DIcontainer.bind<CreateTeamHandler>(CreateTeamHandler).toSelf();
-DIcontainer.bind<IndexTeamHandler>(IndexTeamHandler).toSelf();
 DIcontainer.bind<CreatePlayerHandler>(CreatePlayerHandler).toSelf();
 DIcontainer.bind<IndexPlayerHandler>(IndexPlayerHandler).toSelf();
 DIcontainer.bind<CreateBanHandler>(CreateBanHandler).toSelf();
 DIcontainer.bind<IndexBanHandler>(IndexBanHandler).toSelf();
 DIcontainer.bind<LoginHandler>(LoginHandler).toSelf();
+
+DIcontainer.bind<CreateTeamHandler>(CreateTeamHandler).toSelf();
+DIcontainer.bind<IndexTeamHandler>(IndexTeamHandler).toSelf();
+DIcontainer.bind<UpdateTeamHandler>(UpdateTeamHandler).toSelf();
+DIcontainer.bind<DeleteTeamHandler>(DeleteTeamHandler).toSelf();
 
 export default DIcontainer;
