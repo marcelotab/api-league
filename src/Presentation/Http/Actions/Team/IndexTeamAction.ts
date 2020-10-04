@@ -16,9 +16,9 @@ class IndexTeamAction {
         this.indexTeamHandler = indexTeamHandler;
     }
 
+    // @ts-ignore
     public async execute(request: Request, response: Response): Promise<Response> {
         // const command = this.IndexTeamAdapter.adapt(request.body);
-        console.log(request.body);
         // const result = this.IndexTeamHandler.handle(command);
         const result = await this.indexTeamHandler.handle();
 

@@ -12,6 +12,8 @@ import CreateUserAction from '../../Presentation/Http/Actions/User/CreateUserAct
 import CreateUserHandler from '../../Aplication/Handlers/User/CreateUserHandler';
 import { ITeamRepository } from '../../Domain/Contracts/Repositories/ITeamRepository';
 import TeamRepository from '../Persistence/Repositories/TeamRepository';
+import { IBanRepository } from '../../Domain/Contracts/Repositories/IBanRepository';
+import BanRepository from '../Persistence/Repositories/BanRepository';
 import TeamRoutes from '../../Presentation/Http/Routes/team';
 import UserRoutes from '../../Presentation/Http/Routes/user';
 import CreateTeamAction from '../../Presentation/Http/Actions/Team/CreateTeamAction';
@@ -25,6 +27,7 @@ import CreatePlayerAdapter from '../../Presentation/Http/Adapters/Player/CreateP
 import CreatePlayerAction from '../../Presentation/Http/Actions/Player/CreatePlayerAction';
 import IndexPlayerHandler from '../../Aplication/Handlers/Player/IndexPlayerHandler';
 import IndexPlayerAction from '../../Presentation/Http/Actions/Player/IndexPlayerAction';
+import CreateBanAdapter from '../../Presentation/Http/Adapters/Ban/CreateBanAdapter';
 import DocumentationRoutes from '../../Presentation/Http/Routes/documentation';
 import LoginAction from '../../Presentation/Http/Actions/Auth/LoginAction';
 import AuthRoutes from '../../Presentation/Http/Routes/auth';
@@ -32,6 +35,11 @@ import LoginAdapter from '../../Presentation/Http/Adapters/Auth/LoginAdapter';
 import AuthService from '../../Aplication/Services/AuthService';
 import TokenService from '../../Aplication/Services/TokenService';
 import LoginHandler from '../../Aplication/Handlers/Auth/LoginHandler';
+import BanRoutes from '../../Presentation/Http/Routes/ban';
+import CreateBanAction from '../../Presentation/Http/Actions/Ban/CreateBanAction';
+import CreateBanHandler from '../../Aplication/Handlers/Ban/CreateBanHandler';
+import IndexBanAction from '../../Presentation/Http/Actions/Ban/IndexBanAction';
+import IndexBanHandler from '../../Aplication/Handlers/Ban/IndexBanHandler';
 
 /* eslint-disable-next-line @typescript-eslint/naming-convention*/
 const DIcontainer = new Container();
@@ -43,16 +51,19 @@ DIcontainer.bind<TeamRoutes>(TeamRoutes).toSelf();
 DIcontainer.bind<PlayerRoutes>(PlayerRoutes).toSelf();
 DIcontainer.bind<DocumentationRoutes>(DocumentationRoutes).toSelf();
 DIcontainer.bind<AuthRoutes>(AuthRoutes).toSelf();
+DIcontainer.bind<BanRoutes>(BanRoutes).toSelf();
 
 //repositories
 DIcontainer.bind<IUserRepository>(Types.IUserRepository).to(UserRepository);
 DIcontainer.bind<ITeamRepository>(Types.ITeamRepository).to(TeamRepository);
 DIcontainer.bind<IPlayerRepository>(Types.IPlayerRepository).to(PlayerRepository);
+DIcontainer.bind<IBanRepository>(Types.IBanRepository).to(BanRepository);
 
 //adapters
 DIcontainer.bind<CreateUserAdapter>(CreateUserAdapter).toSelf();
 DIcontainer.bind<CreateTeamAdapter>(CreateTeamAdapter).toSelf();
 DIcontainer.bind<CreatePlayerAdapter>(CreatePlayerAdapter).toSelf();
+DIcontainer.bind<CreateBanAdapter>(CreateBanAdapter).toSelf();
 DIcontainer.bind<LoginAdapter>(LoginAdapter).toSelf();
 
 //services
@@ -66,6 +77,8 @@ DIcontainer.bind<CreateTeamAction>(CreateTeamAction).toSelf();
 DIcontainer.bind<IndexTeamAction>(IndexTeamAction).toSelf();
 DIcontainer.bind<CreatePlayerAction>(CreatePlayerAction).toSelf();
 DIcontainer.bind<IndexPlayerAction>(IndexPlayerAction).toSelf();
+DIcontainer.bind<CreateBanAction>(CreateBanAction).toSelf();
+DIcontainer.bind<IndexBanAction>(IndexBanAction).toSelf();
 DIcontainer.bind<LoginAction>(LoginAction).toSelf();
 
 //handlers
@@ -74,6 +87,8 @@ DIcontainer.bind<CreateTeamHandler>(CreateTeamHandler).toSelf();
 DIcontainer.bind<IndexTeamHandler>(IndexTeamHandler).toSelf();
 DIcontainer.bind<CreatePlayerHandler>(CreatePlayerHandler).toSelf();
 DIcontainer.bind<IndexPlayerHandler>(IndexPlayerHandler).toSelf();
+DIcontainer.bind<CreateBanHandler>(CreateBanHandler).toSelf();
+DIcontainer.bind<IndexBanHandler>(IndexBanHandler).toSelf();
 DIcontainer.bind<LoginHandler>(LoginHandler).toSelf();
 
 export default DIcontainer;
