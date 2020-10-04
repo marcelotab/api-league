@@ -72,7 +72,7 @@
                                 "name": {
                                     "type": "string",
                                     "minLength": 3,
-                                    "maxLength": 30
+                                    "maxLength": 50
                                 }
                             }
                         }
@@ -81,6 +81,74 @@
                 "responses": {
                     "201": {
                         "description": "team created successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": ["teams"],
+                "summary": "Update a team",
+                "description": "Update team to the soccer league",
+                "operationId": "updateTeamAction",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Soccer team to update",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": ["id", "name"],
+                            "properties": {
+                                "id": {
+                                    "type": "number"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "minLength": 3,
+                                    "maxLength": 50
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "team created successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ]
+            }
+        },
+        "/teams/{teamId}": {
+            "delete": {
+                "tags": ["teams"],
+                "summary": "Remove a team",
+                "description": "Remove a team to the soccer league by specified id.",
+                "operationId": "deleteTeamAction",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "teamId",
+                        "in": "path",
+                        "description": "ID of team to delete",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful removal, team with id {teamId} was destroyed"
                     }
                 },
                 "security": [
@@ -304,7 +372,7 @@
                 "name": {
                     "type": "string",
                     "minLength": 3,
-                    "maxLength": 30
+                    "maxLength": 50
                 },
                 "players": {
                     "type": "array",
