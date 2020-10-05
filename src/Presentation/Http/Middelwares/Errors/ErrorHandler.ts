@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import HttpError from '../../Errors/HttpError';
+import HttpError from '../../Errors/BaseHttpError';
 
 function withErrorStack(error: string, stack: string) {
     if (process.env.NODE_ENV !== 'production') {
