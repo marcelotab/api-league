@@ -41,6 +41,7 @@
  * deprecated	200	Something about this request is using deprecated functionality, or the response format may be about to change.
  * server_error	Varies	Server is currently experiencing issues.
  */
+/* eslint-disable no-unused-vars */
 export const HTTP_CODES = {
     OK: 200,
     CREATED: 201,

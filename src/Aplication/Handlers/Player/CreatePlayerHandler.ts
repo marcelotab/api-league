@@ -14,7 +14,7 @@ class CreatePlayerHandler {
     }
 
     public async handle(command: CreatePlayerCommand): Promise<any> {
-        const player = new Player(command.getName(), command.getSurname(), command.getStatus());
+        const player = new Player(command.getName(), command.getSurname());
 
         if (command.getTeamId()) {
             player.team = <Team>{ id: command.getTeamId() };
