@@ -1,4 +1,4 @@
-import HttpError from '../../../Presentation/Http/Errors/HttpError';
+import HttpError from '../../../Presentation/Http/Errors/BaseHttpError';
 import UpdateTeamCommand from '../../Commands/Team/UpdateTeamCommand';
 import { ITeamRepository } from '../../../Domain/Contracts/Repositories/ITeamRepository';
 import { inject, injectable } from 'inversify';
