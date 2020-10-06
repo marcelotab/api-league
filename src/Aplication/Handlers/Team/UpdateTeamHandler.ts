@@ -1,4 +1,4 @@
-import HttpError from '../../../Presentation/Http/Errors/BaseHttpError';
+import InternalError from '../../../Presentation/Http/Errors/InternalError';
 import UpdateTeamCommand from '../../Commands/Team/UpdateTeamCommand';
 import { ITeamRepository } from '../../../Domain/Contracts/Repositories/ITeamRepository';
 import { inject, injectable } from 'inversify';
@@ -17,13 +17,13 @@ class UpdateTeamHandler {
         try {
             const team = await this.teamRepository.findById(command.getId());
 
-            if (!team) throw new HttpError(`Team with id: ${command.getId()} not found`, 505);
+            if (!team) throw new InternalError(`Team with id: ${command.getId()} not found`, 505);
 
             team.setName(command.getName());
 
             return await this.teamRepository.save(team);
         } catch (e) {
-            throw new HttpError(`Team could not be updated`, 500);
+            throw new InternalError(`Team could not be updated`, 500);
         }
     }
 }

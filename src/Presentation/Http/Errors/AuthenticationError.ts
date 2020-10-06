@@ -1,11 +1,9 @@
-import BaseHttpError from "./BaseHttpError";
+import BaseHttpError from './BaseHttpError';
 
-class AuthenticationError extends BaseHttpError {
-
+export default class AuthenticationError extends BaseHttpError {
     public constructor(message: string, status: number) {
-        super(AuthenticationError.name, message, status,);
+        super(AuthenticationError.name, message, status);
 
         this.status = status || 500;
-
     }
 }
