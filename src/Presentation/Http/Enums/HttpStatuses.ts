@@ -41,20 +41,19 @@
  * deprecated	200	Something about this request is using deprecated functionality, or the response format may be about to change.
  * server_error	Varies	Server is currently experiencing issues.
  */
-/* eslint-disable no-unused-vars */
-export const HTTP_CODES = {
-    OK: 200,
-    CREATED: 201,
-    ASYNC: 202,
-    NO_CONTENT: 204,
-    BAD_REQUEST: 400,
-    UNAUTHORIZED: 401,
-    FORBIDDEN: 403,
-    NOT_FOUND: 404,
-    METHOD_NOT_ALLOWED: 405,
-    CONFLICT: 409,
-    GONE: 410,
-    UNPROCESSABLE_ENTITY: 422,
-    INTERNAL_ERROR: 500,
-    UNAVAILABLE: 503,
-};
+export enum HttpCodes {
+    OK = 200,
+    CREATED = 201,
+    ASYNC = 202,
+    NO_CONTENT = 204,
+    BAD_REQUEST = 400,
+    UNAUTHORIZED = 401,
+    FORBIDDEN = 403,
+    NOT_FOUND = 404,
+    METHOD_NOT_ALLOWED = 405,
+    CONFLICT = 409,
+    GONE = 410,
+    UNPROCESSABLE_ENTITY = 422,
+    INTERNAL_ERROR = 500,
+    UNAVAILABLE = 503,
+}

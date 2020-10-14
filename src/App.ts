@@ -6,6 +6,7 @@ import { Application } from 'express';
 import DIcontainer from './Infraestructure/DI/inversify.config';
 import ApiRoutes from './Presentation/Http/Routes';
 import helmet from 'helmet';
+import cors from 'cors';
 import { errorHandler } from './Presentation/Http/Middelwares/Errors/ErrorHandler';
 import { errorLog } from './Presentation/Http/Middelwares/Errors/ErrorLog';
 import { notFoundHandler } from './Presentation/Http/Middelwares/NotFoundHandler';
@@ -39,6 +40,7 @@ class App {
 
     private setMiddelwares(): void {
         this.app.use(bodyParser.json());
+        this.app.use(cors());
         this.app.use(helmet());
     }
 

@@ -3,8 +3,7 @@ import { ITeamRepository } from '../../../Domain/Contracts/Repositories/ITeamRep
 import { inject, injectable } from 'inversify';
 import { Types } from '../../../Infraestructure/DI/types';
 import Team from '../../../Domain/Entities/Team';
-import HttpError from '../../../Presentation/Http/Errors/BaseHttpError';
-import InternalError from "../../../Presentation/Http/Errors/InternalError";
+import InternalError from '../../../Presentation/Http/Errors/InternalError';
 
 @injectable()
 class DeleteTeamHandler {
