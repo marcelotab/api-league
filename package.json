@@ -63,7 +63,7 @@
     },
     "lint-staged": {
         "*.ts": [
-            "npx eslint --fix",
+            "npx eslint",
             "npx prettier --write",
             "git add"
         ],
