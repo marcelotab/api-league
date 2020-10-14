@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * REFERENCES:
  * 2xx is all about success:

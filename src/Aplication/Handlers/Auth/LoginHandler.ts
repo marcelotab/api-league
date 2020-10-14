@@ -15,7 +15,7 @@ class LoginHandler {
         const password = command.getPassword();
 
         try {
-            return this.authService.signIn(email, password);
+            return await this.authService.signIn(email, password);
         } catch (e) {
             throw new Error('Error en el login');
         }

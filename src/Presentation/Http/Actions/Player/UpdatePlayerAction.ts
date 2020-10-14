@@ -5,25 +5,24 @@ import UpdatePlayerAdapter from '../../Adapters/Player/UpdatePlayerAdapter';
 
 @injectable()
 class UpdatePlayerAction {
-    private UpdatePlayerAdapter: UpdatePlayerAdapter;
-    private UpdatePlayerHandler: UpdatePlayerHandler;
+    private updatePlayerAdapter: UpdatePlayerAdapter;
+    private updatePlayerHandler: UpdatePlayerHandler;
 
     constructor(
-        @inject(UpdatePlayerAdapter) UpdatePlayerAdapter: UpdatePlayerAdapter,
-        @inject(UpdatePlayerHandler) UpdatePlayerHandler: UpdatePlayerHandler,
+        @inject(UpdatePlayerAdapter) updatePlayerAdapter: UpdatePlayerAdapter,
+        @inject(UpdatePlayerHandler) updatePlayerHandler: UpdatePlayerHandler,
     ) {
-        this.UpdatePlayerAdapter = UpdatePlayerAdapter;
-        this.UpdatePlayerHandler = UpdatePlayerHandler;
+        this.updatePlayerAdapter = updatePlayerAdapter;
+        this.updatePlayerHandler = updatePlayerHandler;
     }
 
     public async execute(request: Request, response: Response): Promise<Response> {
-        const command = this.UpdatePlayerAdapter.adapt(request.body);
+        const command = this.updatePlayerAdapter.adapt(request.body);
 
-        const result = await this.UpdatePlayerHandler.handle(command);
+        const result = await this.updatePlayerHandler.handle(command);
 
         return response.status(200).json(result);
     }
 }
 
 export default UpdatePlayerAction;
-
