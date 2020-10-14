@@ -17,8 +17,6 @@ class DeletePlayerAction {
     }
 
     public async execute(request: Request, response: Response): Promise<Response> {
-        console.log('entro');
-
         const command = this.deletePlayerAdapter.adapt(request.params);
 
         const result = await this.deletePlayerHandler.handle(command);

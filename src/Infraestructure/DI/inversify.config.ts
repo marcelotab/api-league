@@ -49,6 +49,9 @@ import DeleteTeamHandler from '../../Aplication/Handlers/Team/DeleteTeamHandler'
 import DeletePlayerAdapter from '../../Presentation/Http/Adapters/Player/DeletePlayerAdapter';
 import DeletePlayerHandler from '../../Aplication/Handlers/Player/DeletePlayerHandler';
 import DeletePlayerAction from "../../Presentation/Http/Actions/Player/DeletePlayerAction";
+import UpdatePlayerHandler from "../../Aplication/Handlers/Player/UpdatePlayerHandler";
+import UpdatePlayerAction from "../../Presentation/Http/Actions/Player/UpdatePlayerAction";
+import UpdatePlayerAdapter from "../../Presentation/Http/Adapters/Player/UpdatePlayerAdapter";
 
 
 /* eslint-disable-next-line @typescript-eslint/naming-convention*/
@@ -76,6 +79,7 @@ DIcontainer.bind<LoginAdapter>(LoginAdapter).toSelf();
 
 DIcontainer.bind<CreatePlayerAdapter>(CreatePlayerAdapter).toSelf();
 DIcontainer.bind<DeletePlayerAdapter>(DeletePlayerAdapter).toSelf();
+DIcontainer.bind<UpdatePlayerAdapter>(UpdatePlayerAdapter).toSelf();
 
 DIcontainer.bind<CreateTeamAdapter>(CreateTeamAdapter).toSelf();
 DIcontainer.bind<UpdateTeamAdapter>(UpdateTeamAdapter).toSelf();
@@ -92,6 +96,7 @@ DIcontainer.bind<CreateUserAction>(CreateUserAction).toSelf();
 DIcontainer.bind<CreatePlayerAction>(CreatePlayerAction).toSelf();
 DIcontainer.bind<IndexPlayerAction>(IndexPlayerAction).toSelf();
 DIcontainer.bind<DeletePlayerAction>(DeletePlayerAction).toSelf();
+DIcontainer.bind<UpdatePlayerAction>(UpdatePlayerAction).toSelf();
 
 DIcontainer.bind<CreateBanAction>(CreateBanAction).toSelf();
 DIcontainer.bind<IndexBanAction>(IndexBanAction).toSelf();
@@ -108,6 +113,7 @@ DIcontainer.bind<CreateUserHandler>(CreateUserHandler).toSelf();
 DIcontainer.bind<CreatePlayerHandler>(CreatePlayerHandler).toSelf();
 DIcontainer.bind<IndexPlayerHandler>(IndexPlayerHandler).toSelf();
 DIcontainer.bind<DeletePlayerHandler>(DeletePlayerHandler).toSelf();
+DIcontainer.bind<UpdatePlayerHandler>(UpdatePlayerHandler).toSelf();
 
 DIcontainer.bind<CreateBanHandler>(CreateBanHandler).toSelf();
 DIcontainer.bind<IndexBanHandler>(IndexBanHandler).toSelf();

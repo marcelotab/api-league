@@ -16,6 +16,10 @@ class PlayerRepository extends TypeRepository implements IPlayerRepository {
 
         return result?.affected > 0;
     }
+
+    public findById(id: number): Promise<Player> {
+        return this.repository(Player).findOne(id);
+    }
 }
 
 export default PlayerRepository;
