@@ -58,7 +58,7 @@
         "hooks": {
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
             "pre-commit": "lint-staged && npx eslint src/**/*.ts",
-            "pre-push": "test"
+            "pre-push": "npm run test"
         }
     },
     "lint-staged": {
