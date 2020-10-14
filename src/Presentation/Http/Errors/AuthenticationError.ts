@@ -5,5 +5,6 @@ export default class AuthenticationError extends BaseHttpError {
         super(AuthenticationError.name, message, status);
 
         this.status = status || 500;
+
     }
 }

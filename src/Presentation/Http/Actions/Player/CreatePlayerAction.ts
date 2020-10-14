@@ -21,7 +21,7 @@ class CreatePlayerAction {
 
         const result = await this.createPlayerHandler.handle(command);
 
-        return response.status(200).json(result);
+        return response.status(201).json(result);
     }
 }
 

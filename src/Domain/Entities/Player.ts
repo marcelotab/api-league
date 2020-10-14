@@ -1,5 +1,4 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { StatusPlayer } from '../Enums/StatusPlayer';
 import Team from './Team';
 import Ban from './Ban';
 
@@ -14,23 +13,15 @@ class Player {
     @Column()
     public surname: string;
 
-    @Column({
-        type: 'enum',
-        enum: StatusPlayer,
-        default: StatusPlayer.UNBANNED,
-    })
-    public status: StatusPlayer;
-
     @ManyToOne(() => Team, (team) => team.players)
     public team: Team;
 
     @OneToMany(() => Ban, (ban) => ban.player)
     public bans: Ban[];
 
-    public constructor(name: string, surname: string, status: StatusPlayer) {
+    public constructor(name: string, surname: string) {
         this.name = name;
         this.surname = surname;
-        this.status = status;
     }
 
     public getId(): number {
@@ -51,14 +42,6 @@ class Player {
 
     public setSurname(value: string): void {
         this.surname = value;
-    }
-
-    public getStatus(): StatusPlayer {
-        return this.status;
-    }
-
-    public setStatus(value: StatusPlayer): void {
-        this.status = value;
     }
 
     public getTeam(): Team {
