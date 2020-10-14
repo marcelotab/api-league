@@ -9,3 +9,5 @@ class AuthenticationError extends BaseHttpError {
 
     }
 }
+
+export default AuthenticationError;

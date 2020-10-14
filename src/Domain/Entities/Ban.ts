@@ -12,7 +12,7 @@ class Ban {
     @Column({ type: 'date' })
     public dateTo: Date;
 
-    @ManyToOne(() => Player, (player) => player.bans)
+    @ManyToOne(() => Player, (player) => player.bans, {onDelete:'CASCADE'})
     public player: Player;
 
     public constructor(dateFrom: Date, dateTo: Date, player: Player) {
