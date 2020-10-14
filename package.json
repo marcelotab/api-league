@@ -4,7 +4,7 @@
     "description": "",
     "main": "src/server.ts",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "NODE_ENV=test jest --no-watchman --verbose",
         "tsc": "tsc",
         "dev": "ts-node-dev src/server.ts",
         "start": "ts-node src/server.ts"
@@ -19,13 +19,17 @@
         "@commitlint/config-conventional": "^11.0.0",
         "@types/body-parser": "^1.19.0",
         "@types/express": "^4.17.7",
+        "@types/faker": "^5.1.2",
         "@typescript-eslint/eslint-plugin": "^4.2.0",
         "@typescript-eslint/parser": "^4.2.0",
         "eslint": "^7.9.0",
         "eslint-config-prettier": "^6.11.0",
+        "faker": "^5.1.0",
         "husky": "^4.3.0",
+        "jest": "^26.5.3",
         "lint-staged": "^10.4.0",
         "prettier": "^2.1.2",
+        "ts-jest": "^26.4.1",
         "ts-node-dev": "^1.0.0-pre.62"
     },
     "dependencies": {
@@ -53,7 +57,8 @@
     "husky": {
         "hooks": {
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-            "pre-commit": "lint-staged"
+            "pre-commit": "lint-staged && npx eslint src/**/*.ts",
+            "pre-push": "test"
         }
     },
     "lint-staged": {
