@@ -13,6 +13,9 @@ class Player {
     @Column()
     public surname: string;
 
+    @Column({ nullable: true })
+    public photo: string;
+
     @ManyToOne(() => Team, (team) => team.players)
     public team: Team;
 
@@ -42,6 +45,14 @@ class Player {
 
     public setSurname(value: string): void {
         this.surname = value;
+    }
+
+    public getPhoto(): string {
+        return this.photo;
+    }
+
+    public setPhoto(value: string): void {
+        this.photo = value;
     }
 
     public getTeam(): Team {
