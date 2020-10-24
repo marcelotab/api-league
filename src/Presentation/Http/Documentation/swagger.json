@@ -205,9 +205,9 @@
                                     "minLength": 3,
                                     "maxLength": 30
                                 },
-                                "status": {
+                                "photo": {
                                     "type": "string",
-                                    "enum": ["banned", "unbanned"]
+                                    "format": "url"
                                 },
                                 "team_id": {
                                     "type": "number",
@@ -220,6 +220,87 @@
                 "responses": {
                     "201": {
                         "description": "player created successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": ["players"],
+                "summary": "Update a player",
+                "description": "Update player to the soccer league",
+                "operationId": "updatePlayerAction",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Player to update",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": ["id", "name", "surname", "status"],
+                            "properties": {
+                                "id": {
+                                    "type": "number"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "minLength": 3,
+                                    "maxLength": 30
+                                },
+                                "surname": {
+                                    "type": "string",
+                                    "minLength": 3,
+                                    "maxLength": 30
+                                },
+                                "photo": {
+                                    "type": "string",
+                                    "format": "url"
+                                },
+                                "team_id": {
+                                    "type": "number",
+                                    "minimum": 1
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "player updated successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ]
+            }
+        },
+        "/players/{playerId}": {
+            "delete": {
+                "tags": ["players"],
+                "summary": "Remove a player",
+                "description": "Remove a player to the soccer league by specified id.",
+                "operationId": "deletePlayerAction",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "playerId",
+                        "in": "path",
+                        "description": "ID of player to delete",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful removal, player with id {playerId} was destroyed"
                     }
                 },
                 "security": [
@@ -398,9 +479,9 @@
                     "minLength": 3,
                     "maxLength": 30
                 },
-                "status": {
+                "photo": {
                     "type": "string",
-                    "enum": ["banned", "unbanned"]
+                    "format": "url"
                 }
             }
         },
