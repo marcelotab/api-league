@@ -1,11 +1,11 @@
 import UpdatePlayerCommand from '../../Commands/Player/UpdatePlayerCommand';
-import {IPlayerRepository} from '../../../Domain/Contracts/Repositories/IPlayerRepository';
-import {inject, injectable} from 'inversify';
-import {Types} from '../../../Infraestructure/DI/types';
+import { IPlayerRepository } from '../../../Domain/Contracts/Repositories/IPlayerRepository';
+import { inject, injectable } from 'inversify';
+import { Types } from '../../../Infraestructure/DI/types';
 import Player from '../../../Domain/Entities/Player';
-import NotFoundError from "../../../Presentation/Http/Errors/NotFoundError";
-import InternalError from "../../../Presentation/Http/Errors/InternalError";
-import Team from "../../../Domain/Entities/Team";
+import NotFoundError from '../../../Presentation/Http/Errors/NotFoundError';
+import InternalError from '../../../Presentation/Http/Errors/InternalError';
+import Team from '../../../Domain/Entities/Team';
 
 @injectable()
 class UpdatePlayerHandler {
@@ -16,7 +16,6 @@ class UpdatePlayerHandler {
     }
 
     public async handle(command: UpdatePlayerCommand): Promise<Player | void> {
-
         try {
             const player = await this.playerRepository.findById(command.getId());
 
@@ -26,16 +25,17 @@ class UpdatePlayerHandler {
             player.setSurname(command.getSurname());
 
             if (command.getTeamId()) {
-                player.team = <Team>{id: command.getTeamId()};
+                player.team = <Team>{ id: command.getTeamId() };
+            }
+
+            if (command.getPhoto()) {
+                player.photo = command.getPhoto();
             }
 
             return await this.playerRepository.save(player);
-
         } catch (e) {
             throw new InternalError(`Team could not be updated`, 500);
         }
-
-
     }
 }
 

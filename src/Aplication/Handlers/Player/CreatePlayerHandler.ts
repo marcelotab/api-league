@@ -20,6 +20,10 @@ class CreatePlayerHandler {
             player.team = <Team>{ id: command.getTeamId() };
         }
 
+        if (command.getPhoto()) {
+            player.photo = command.getPhoto();
+        }
+
         await this.playerRepository.save(player);
         return player;
     }
