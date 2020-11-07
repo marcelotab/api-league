@@ -16,7 +16,7 @@ class CreateBanHandler {
     public async handle(command: CreateBanCommand): Promise<any> {
         const player = { id: command.getPlayerId() } as Player;
 
-        const ban = new Ban(command.getDateFrom(), command.getDateTo(), player);
+        const ban = new Ban(command.getDate(), command.getMatches(), player);
 
         await this.banRepository.save(ban);
         return ban;
