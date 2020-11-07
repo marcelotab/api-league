@@ -1,20 +1,20 @@
 class CreateBanCommand {
-    private readonly dateFrom: Date;
-    private readonly dateTo: Date;
+    private readonly date: Date;
+    private readonly matches: number;
     private readonly playerId: number;
 
-    constructor(dateFrom: Date, dateTo: Date, playerId: number) {
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
+    constructor(date: Date, matches: number, playerId: number) {
+        this.date = date;
+        this.matches = matches;
         this.playerId = playerId;
     }
 
-    public getDateFrom(): Date {
-        return this.dateFrom;
+    public getDate(): Date {
+        return this.date;
     }
 
-    public getDateTo(): Date {
-        return this.dateTo;
+    public getMatches(): number {
+        return this.matches;
     }
 
     public getPlayerId(): number {
