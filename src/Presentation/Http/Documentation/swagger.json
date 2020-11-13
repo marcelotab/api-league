@@ -130,6 +130,36 @@
             }
         },
         "/teams/{teamId}": {
+            "get": {
+                "tags": ["teams"],
+                "summary": "Returns all players on a team",
+                "description": "Returns all players on a team specified id.",
+                "operationId": "indexByTeamPlayerAction",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "teamId",
+                        "in": "path",
+                        "description": "ID of player to delete",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Player"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ]
+            },
             "delete": {
                 "tags": ["teams"],
                 "summary": "Remove a team",
@@ -347,13 +377,13 @@
                             "type": "object",
                             "required": ["date", "matches", "player_id"],
                             "properties": {
-                                "date": {
+                                "dateFrom": {
                                     "type": "string",
                                     "format": "date"
                                 },
-                                "matches": {
-                                    "type": "number",
-                                    "minimum": 1
+                                "dateTo": {
+                                    "type": "string",
+                                    "format": "date"
                                 },
                                 "player_id": {
                                     "type": "number",
@@ -454,12 +484,6 @@
                     "type": "string",
                     "minLength": 3,
                     "maxLength": 50
-                },
-                "players": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Player"
-                    }
                 }
             }
         },
@@ -482,6 +506,9 @@
                 "photo": {
                     "type": "string",
                     "format": "url"
+                },
+                "ban": {
+                    "$ref": "#/definitions/Ban"
                 }
             }
         },
