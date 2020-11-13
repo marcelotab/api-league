@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
 import Player from './Player';
 
 @Entity('bans')
@@ -12,7 +12,8 @@ class Ban {
     @Column()
     public matches: number;
 
-    @ManyToOne(() => Player, (player) => player.bans, { onDelete: 'CASCADE' })
+    @OneToOne(() => Player, (player) => player.ban, { onDelete: 'CASCADE' })
+    @JoinColumn()
     public player: Player;
 
     public constructor(date: Date, matches: number, player: Player) {
