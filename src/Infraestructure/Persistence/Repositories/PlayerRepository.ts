@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import TypeRepository from './TypeRepository';
 import { IPlayerRepository } from '../../../Domain/Contracts/Repositories/IPlayerRepository';
 import Player from '../../../Domain/Entities/Player';
@@ -20,11 +21,28 @@ class PlayerRepository extends TypeRepository implements IPlayerRepository {
     //     .getMany()
     // }
 
+    // public async findAll(): Promise<Player[]> {
+    //     return await this.manager().query(
+    //         `SELECT * FROM players AS p LEFT JOIN bans AS b ON b.id = (SELECT b.id AS bid FROM bans AS b WHERE p.id = b.playerId ORDER BY b.dateTo DESC LIMIT 1);`,
+    //     );
+    // }
+
     public async findAll(): Promise<Player[]> {
-        return await this.manager().query(
-            `SELECT * FROM players AS p LEFT JOIN bans AS b ON b.id = (SELECT b.id AS bid FROM bans AS b WHERE p.id = b.playerId ORDER BY b.dateTo DESC LIMIT 1);`,
-        );
+        return await this.repository(Player).find();
     }
+
+    public async find(option: any): Promise<Player[]> {
+        return await this.repository(Player).find(option);
+    }
+
+    /*public async findAll(): Promise<Player[]> {
+        return await this.manager()
+        .createQueryBuilder()
+        .select('players')
+        .from('players')
+        .leftJoinAndSelect('players.ban', 'ban.playerId')
+        .getMany()
+    }*/
 
     //SELECT * FROM players AS p LEFT JOIN bans AS b ON b.id = (SELECT b.id FROM bans AS b WHERE p.id = b.playerId ORDER BY b.dateTo DESC LIMIT 1);
 
