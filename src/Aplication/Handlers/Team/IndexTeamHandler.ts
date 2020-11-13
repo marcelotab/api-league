@@ -13,7 +13,7 @@ class IndexTeamHandler {
 
     public async handle(): Promise<Team[]> {
         //To do: findByPaginated
-        return await this.teamRepository.find({ relations: ['players'] });
+        return await this.teamRepository.findAll();
     }
 }
 
