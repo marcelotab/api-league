@@ -13,7 +13,7 @@ class CreateTeamHandler {
     }
 
     public async handle(command: CreateTeamCommand): Promise<Team> {
-        const team = new Team(command.getName());
+        const team = new Team(command.getName(), command.getPhoto());
         await this.teamRepository.save(team);
         return team;
     }

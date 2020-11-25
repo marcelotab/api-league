@@ -21,6 +21,10 @@ class UpdateTeamHandler {
 
             team.setName(command.getName());
 
+            if(command.getPhoto()) {
+                team.photo = command.getPhoto();
+            }
+
             return await this.teamRepository.save(team);
         } catch (e) {
             throw new InternalError(`Team could not be updated`, 500);

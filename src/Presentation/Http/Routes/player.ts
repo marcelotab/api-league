@@ -13,7 +13,7 @@ import UpdatePlayerAction from "../Actions/Player/UpdatePlayerAction";
 
 @injectable()
 class PlayerRoutes {
-    private router: Router;
+    private readonly router: Router;
     private createPlayerAction: CreatePlayerAction;
     private indexPlayerAction: IndexPlayerAction;
     private deletePlayerAction: DeletePlayerAction;
@@ -36,8 +36,8 @@ class PlayerRoutes {
     private setRoutes(): void {
         this.router.post(
             '/',
-            isAuthenticatedMiddleware(),
-            validationMiddleware(CreatePlayerSchema),
+            // isAuthenticatedMiddleware(),
+            validationMiddleware(CreatePlayerSchema, 'body'),
             asyncMiddleware(async (request: Request, response: Response) => {
                 await this.createPlayerAction.execute(request, response);
             }),

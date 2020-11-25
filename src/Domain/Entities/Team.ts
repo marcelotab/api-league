@@ -6,14 +6,18 @@ class Team {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @Column()
+    @Column({ unique: true})
     public name: string;
+
+    @Column({ nullable: true })
+    public photo: string;
 
     @OneToMany(() => Player, (player) => player.team)
     public players: Player[];
 
-    public constructor(name: string) {
+    public constructor(name: string, photo: string) {
         this.name = name;
+        this.photo = photo;
     }
 
     public getId(): number {
@@ -34,6 +38,14 @@ class Team {
 
     public setPlayers(value: Player[]): void {
         this.players = value;
+    }
+
+    public getPhoto(): string | null {
+        return this.photo;
+    }
+
+    public setPhoto(photo: string): void {
+        this.photo = photo;
     }
 }
 

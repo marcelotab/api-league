@@ -36,8 +36,8 @@ class TeamRoutes {
     private setRoutes(): void {
         this.router.post(
             '/',
-            isAuthenticatedMiddleware(),
-            validationMiddleware(CreateTeamSchema),
+            // isAuthenticatedMiddleware(),
+            validationMiddleware(CreateTeamSchema,'body'),
             asyncMiddleware(async (request: Request, response: Response) => {
                 await this.createTeamAction.execute(request, response);
             }),
@@ -52,7 +52,7 @@ class TeamRoutes {
 
         this.router.put(
             '/',
-            isAuthenticatedMiddleware(),
+            // isAuthenticatedMiddleware(),
             validationMiddleware(UpdateTeamSchema),
             asyncMiddleware(async (request: Request, response: Response) => {
                 await this.updateTeamAction.execute(request, response);
