@@ -377,13 +377,13 @@
                             "type": "object",
                             "required": ["date", "matches", "player_id"],
                             "properties": {
-                                "dateFrom": {
+                                "date": {
                                     "type": "string",
                                     "format": "date"
                                 },
-                                "dateTo": {
-                                    "type": "string",
-                                    "format": "date"
+                                "matches": {
+                                    "type": "number",
+                                    "minimum": 1
                                 },
                                 "player_id": {
                                     "type": "number",
