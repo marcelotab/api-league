@@ -1,8 +1,8 @@
 import InternalError from '../../../Presentation/Http/Errors/InternalError';
 import UpdateTeamCommand from '../../Commands/Team/UpdateTeamCommand';
-import { ITeamRepository } from '../../../Domain/Contracts/Repositories/ITeamRepository';
-import { inject, injectable } from 'inversify';
-import { Types } from '../../../Infraestructure/DI/types';
+import {ITeamRepository} from '../../../Domain/Contracts/Repositories/ITeamRepository';
+import {inject, injectable} from 'inversify';
+import {Types} from '../../../Infraestructure/DI/types';
 import Team from '../../../Domain/Entities/Team';
 
 @injectable()
@@ -20,6 +20,10 @@ class UpdateTeamHandler {
             if (!team) throw new InternalError(`Team with id: ${command.getId()} not found`, 505);
 
             team.setName(command.getName());
+
+            if (command.getPhoto()) {
+                team.photo = command.getPhoto();
+            }
 
             return await this.teamRepository.save(team);
         } catch (e) {

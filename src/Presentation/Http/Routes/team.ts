@@ -15,7 +15,7 @@ import { IndexByIdTeamSchema } from '../Validations/Schemas/Team/IndexByIdTeamSc
 
 @injectable()
 class TeamRoutes {
-    private router: Router;
+    private readonly router: Router;
     private createTeamAction: CreateTeamAction;
     private indexTeamAction: IndexTeamAction;
     private indexByIdTeamPlayerAction: IndexByIdTeamAction;
@@ -42,7 +42,7 @@ class TeamRoutes {
         this.router.post(
             '/',
             isAuthenticatedMiddleware(),
-            validationMiddleware(CreateTeamSchema),
+            validationMiddleware(CreateTeamSchema, 'body'),
             asyncMiddleware(async (request: Request, response: Response) => {
                 await this.createTeamAction.execute(request, response);
             }),

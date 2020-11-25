@@ -2,12 +2,12 @@ import * as express from 'express';
 import { asyncMiddleware } from '../Middelwares/AsyncMiddleware';
 import CreateUserAction from '../Actions/User/CreateUserAction';
 import { inject, injectable } from 'inversify';
-import { CreateUserSchema } from './../Validations/Schemas/User/CreateUserSchema';
+import { CreateUserSchema } from '../Validations/Schemas/User/CreateUserSchema';
 import { validationMiddleware } from '../Middelwares/ValidationMiddleware';
 
 @injectable()
 class UserRoutes {
-    private router: express.Router;
+    private readonly router: express.Router;
     private createUserAction: CreateUserAction;
 
     public constructor(@inject(CreateUserAction) createUserAction: CreateUserAction) {

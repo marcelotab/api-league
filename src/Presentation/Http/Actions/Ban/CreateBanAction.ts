@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { inject, injectable } from 'inversify';
+import {Request, Response} from 'express';
+import {inject, injectable} from 'inversify';
 import CreateBanAdapter from '../../Adapters/Ban/CreateBanAdapter';
 import CreateBanHandler from '../../../../Aplication/Handlers/Ban/CreateBanHandler';
 
@@ -10,10 +10,10 @@ class CreateBanAction {
 
     constructor(
         @inject(CreateBanAdapter) createBanAdapter: CreateBanAdapter,
-        @inject(CreateBanHandler) createbanHandler: CreateBanHandler,
+        @inject(CreateBanHandler) createBanHandler: CreateBanHandler,
     ) {
         this.createBanAdapter = createBanAdapter;
-        this.createBanHandler = createbanHandler;
+        this.createBanHandler = createBanHandler;
     }
 
     public async execute(request: Request, response: Response): Promise<Response> {

@@ -3,10 +3,10 @@ import { injectable } from 'inversify';
 
 @injectable()
 class UpdateTeamAdapter {
-    public adapt(data: { id: number; name: string }): UpdateTeamCommand {
-        const { id, name } = data;
+    public adapt(data: { id: number; name: string; photo: string }): UpdateTeamCommand {
+        const { id, name, photo } = data;
 
-        return new UpdateTeamCommand(id, name);
+        return new UpdateTeamCommand(id, name, photo);
     }
 }
 

@@ -3,10 +3,10 @@ import { injectable } from 'inversify';
 
 @injectable()
 class CreateTeamAdapter {
-    public adapt(data: { name: string }): CreateTeamCommand {
-        const { name } = data;
+    public adapt(data: { name: string; photo: string }): CreateTeamCommand {
+        const { name, photo } = data;
 
-        return new CreateTeamCommand(name);
+        return new CreateTeamCommand(name, photo);
     }
 }
 

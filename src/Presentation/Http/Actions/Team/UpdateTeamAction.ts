@@ -17,6 +17,7 @@ class UpdateTeamAction {
     }
 
     public async execute(request: Request, response: Response): Promise<Response> {
+
         const command = this.updateTeamAdapter.adapt(request.body);
 
         const result = await this.updateTeamHandler.handle(command);
