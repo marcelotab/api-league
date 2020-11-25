@@ -15,6 +15,12 @@ class BanRepository extends TypeRepository implements IBanRepository {
     public async find(option: any): Promise<Ban[]> {
         return await this.repository(Ban).find(option);
     }
+
+    public async delete(ban: Ban): Promise<boolean> {
+        const result = await this.repository(Ban).delete(ban);
+
+        return result?.affected > 0;
+    }
 }
 
 export default BanRepository;

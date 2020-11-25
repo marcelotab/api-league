@@ -55,6 +55,9 @@ import UpdatePlayerAdapter from '../../Presentation/Http/Adapters/Player/UpdateP
 import IndexByIdTeamAdapter from '../../Presentation/Http/Adapters/Team/IndexByIdTeamAdapter';
 import IndexByIdTeamAction from '../../Presentation/Http/Actions/Team/IndexByIdTeamAction';
 import IndexByIdTeamHandler from '../../Aplication/Handlers/Team/IndexByIdTeamHandler';
+import DeleteBanAdapter from '../../Presentation/Http/Adapters/Ban/DeleteBanAdapter';
+import DeleteBanAction from '../../Presentation/Http/Actions/Ban/DeleteBanAction';
+import DeleteBanHandler from '../../Aplication/Handlers/Ban/DeleteBanHandler';
 
 /* eslint-disable-next-line @typescript-eslint/naming-convention*/
 const DIcontainer = new Container();
@@ -77,6 +80,8 @@ DIcontainer.bind<IBanRepository>(Types.IBanRepository).to(BanRepository);
 //adapters
 DIcontainer.bind<CreateUserAdapter>(CreateUserAdapter).toSelf();
 DIcontainer.bind<CreateBanAdapter>(CreateBanAdapter).toSelf();
+DIcontainer.bind<DeleteBanAdapter>(DeleteBanAdapter).toSelf();
+
 DIcontainer.bind<LoginAdapter>(LoginAdapter).toSelf();
 
 DIcontainer.bind<IndexByIdTeamAdapter>(IndexByIdTeamAdapter).toSelf();
@@ -104,6 +109,8 @@ DIcontainer.bind<UpdatePlayerAction>(UpdatePlayerAction).toSelf();
 
 DIcontainer.bind<CreateBanAction>(CreateBanAction).toSelf();
 DIcontainer.bind<IndexBanAction>(IndexBanAction).toSelf();
+DIcontainer.bind<DeleteBanAction>(DeleteBanAction).toSelf();
+
 DIcontainer.bind<LoginAction>(LoginAction).toSelf();
 
 DIcontainer.bind<CreateTeamAction>(CreateTeamAction).toSelf();
@@ -122,6 +129,8 @@ DIcontainer.bind<UpdatePlayerHandler>(UpdatePlayerHandler).toSelf();
 
 DIcontainer.bind<CreateBanHandler>(CreateBanHandler).toSelf();
 DIcontainer.bind<IndexBanHandler>(IndexBanHandler).toSelf();
+DIcontainer.bind<DeleteBanHandler>(DeleteBanHandler).toSelf();
+
 DIcontainer.bind<LoginHandler>(LoginHandler).toSelf();
 
 DIcontainer.bind<CreateTeamHandler>(CreateTeamHandler).toSelf();
