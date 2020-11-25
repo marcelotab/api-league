@@ -12,8 +12,7 @@ class IndexPlayerHandler {
     }
 
     public async handle(): Promise<Player[]> {
-        //To do: findByPaginated
-        return await this.playerRepository.findAll();
+        return await this.playerRepository.find({ relations: ['ban'] });
     }
 }
 

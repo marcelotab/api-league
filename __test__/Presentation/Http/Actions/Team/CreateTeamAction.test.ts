@@ -8,7 +8,7 @@ import CreateTeamAdapter from '../../../../../src/Presentation/Http/Adapters/Tea
 describe('Aplication - Team Action', () => {
     describe('When new team is created', () => {
         it('should return the newly created team', async () => {
-            const teamToCreate = { name: faker.name.findName() };
+            const teamToCreate = { name: faker.name.findName(), photo: faker.image.imageUrl() };
             const repository = new TeamRepositoryMock();
             const createTeamHandler = new CreateTeamHandler(repository);
             const command = new CreateTeamAdapter().adapt(teamToCreate);
@@ -20,7 +20,7 @@ describe('Aplication - Team Action', () => {
         });
 
         it('should call the repository save method once', async () => {
-            const teamToCreate = { name: faker.name.findName() };
+            const teamToCreate = { name: faker.name.findName(), photo: faker.image.imageUrl() };
             const repository = new TeamRepositoryMock();
             const createTeamHandler = new CreateTeamHandler(repository);
             const command = new CreateTeamAdapter().adapt(teamToCreate);

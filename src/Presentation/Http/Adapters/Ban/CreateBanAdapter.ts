@@ -4,12 +4,12 @@ import { injectable } from 'inversify';
 @injectable()
 class CreateBanAdapter {
     /* eslint-disable-next-line @typescript-eslint/naming-convention*/
-    public adapt(data: { dateFrom: string; dateTo: string; player_id: number }): CreateBanCommand {
-        const dateFrom = new Date(data.dateFrom);
-        const dateTo = new Date(data.dateTo);
-        const { player_id: playerId } = data;
+    public adapt(data: { date: string; matches: number; player_id: number }): CreateBanCommand {
+        const date = new Date(data.date);
 
-        return new CreateBanCommand(dateFrom, dateTo, playerId);
+        const { player_id: playerId, matches } = data;
+
+        return new CreateBanCommand(date, matches, playerId);
     }
 }
 

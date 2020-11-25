@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import Team from './Team';
 import Ban from './Ban';
 
@@ -19,8 +19,8 @@ class Player {
     @ManyToOne(() => Team, (team) => team.players)
     public team: Team;
 
-    @OneToMany(() => Ban, (ban) => ban.player)
-    public bans: Ban[];
+    @OneToOne(() => Ban, (ban) => ban.player)
+    public ban: Ban;
 
     public constructor(name: string, surname: string) {
         this.name = name;
@@ -63,12 +63,12 @@ class Player {
         this.team = value;
     }
 
-    public getBans(): Ban[] {
-        return this.bans;
+    public getBans(): Ban {
+        return this.ban;
     }
 
-    public setBans(value: Ban[]): void {
-        this.bans = value;
+    public setBans(value: Ban): void {
+        this.ban = value;
     }
 }
 

@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
 import Player from './Player';
 
 @Entity('bans')
@@ -7,17 +7,18 @@ class Ban {
     public id: number;
 
     @Column({ type: 'date' })
-    public dateFrom: Date;
+    public date: Date;
 
-    @Column({ type: 'date' })
-    public dateTo: Date;
+    @Column()
+    public matches: number;
 
-    @ManyToOne(() => Player, (player) => player.bans, {onDelete:'CASCADE'})
+    @OneToOne(() => Player, (player) => player.ban, { onDelete: 'CASCADE' })
+    @JoinColumn()
     public player: Player;
 
-    public constructor(dateFrom: Date, dateTo: Date, player: Player) {
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
+    public constructor(date: Date, matches: number, player: Player) {
+        this.date = date;
+        this.matches = matches;
         this.player = player;
     }
 
@@ -25,20 +26,20 @@ class Ban {
         return this.id;
     }
 
-    public getDateFrom(): Date {
-        return this.dateFrom;
+    public getDate(): Date {
+        return this.date;
     }
 
     public setDateFrom(value: Date): void {
-        this.dateFrom = value;
+        this.date = value;
     }
 
-    public getDateTo(): Date {
-        return this.dateTo;
+    public getMatches(): number {
+        return this.matches;
     }
 
-    public setDateTo(value: Date): void {
-        this.dateTo = value;
+    public setMatches(value: number): void {
+        this.matches = value;
     }
 
     public getPlayer(): Player {

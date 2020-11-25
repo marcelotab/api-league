@@ -2,6 +2,7 @@
 import Ban from '../../Entities/Ban';
 
 export interface IBanRepository {
-    save(Ban): Promise<Ban>;
+    save(ban: Ban): Promise<Ban>;
     findAll(): Promise<Ban[]>;
+    find(option: any): Promise<Ban[]>;
 }
