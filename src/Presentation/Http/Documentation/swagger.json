@@ -405,6 +405,35 @@
                 ]
             }
         },
+        "/bans/{banId}": {
+            "delete": {
+                "tags": ["bans"],
+                "summary": "Remove a ban",
+                "description": "Remove a ban to the player by specified id.",
+                "operationId": "deleteBanAction",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "banId",
+                        "in": "path",
+                        "description": "ID of ban to delete",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful removal, ban with id {teamId} was destroyed"
+                    }
+                },
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ]
+            }
+        },
         "/users": {
             "post": {
                 "tags": ["users"],
