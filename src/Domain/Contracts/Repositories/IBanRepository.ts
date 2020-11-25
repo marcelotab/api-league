@@ -5,4 +5,5 @@ export interface IBanRepository {
     save(ban: Ban): Promise<Ban>;
     findAll(): Promise<Ban[]>;
     find(option: any): Promise<Ban[]>;
+    delete(ban: Ban): Promise<boolean>;
 }
