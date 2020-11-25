@@ -13,7 +13,7 @@ import { DeleteTeamSchema } from '../Validations/Schemas/Team/DeleteTeamSchema';
 
 @injectable()
 class TeamRoutes {
-    private router: Router;
+    private readonly router: Router;
     private createTeamAction: CreateTeamAction;
     private indexTeamAction: IndexTeamAction;
     private updateTeamAction: UpdateTeamAction;
@@ -36,7 +36,7 @@ class TeamRoutes {
     private setRoutes(): void {
         this.router.post(
             '/',
-            // isAuthenticatedMiddleware(),
+            isAuthenticatedMiddleware(),
             validationMiddleware(CreateTeamSchema,'body'),
             asyncMiddleware(async (request: Request, response: Response) => {
                 await this.createTeamAction.execute(request, response);
@@ -52,7 +52,7 @@ class TeamRoutes {
 
         this.router.put(
             '/',
-            // isAuthenticatedMiddleware(),
+            isAuthenticatedMiddleware(),
             validationMiddleware(UpdateTeamSchema),
             asyncMiddleware(async (request: Request, response: Response) => {
                 await this.updateTeamAction.execute(request, response);

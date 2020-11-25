@@ -1,8 +1,8 @@
 import InternalError from '../../../Presentation/Http/Errors/InternalError';
 import UpdateTeamCommand from '../../Commands/Team/UpdateTeamCommand';
-import { ITeamRepository } from '../../../Domain/Contracts/Repositories/ITeamRepository';
-import { inject, injectable } from 'inversify';
-import { Types } from '../../../Infraestructure/DI/types';
+import {ITeamRepository} from '../../../Domain/Contracts/Repositories/ITeamRepository';
+import {inject, injectable} from 'inversify';
+import {Types} from '../../../Infraestructure/DI/types';
 import Team from '../../../Domain/Entities/Team';
 
 @injectable()
@@ -21,7 +21,7 @@ class UpdateTeamHandler {
 
             team.setName(command.getName());
 
-            if(command.getPhoto()) {
+            if (command.getPhoto()) {
                 team.photo = command.getPhoto();
             }
 
